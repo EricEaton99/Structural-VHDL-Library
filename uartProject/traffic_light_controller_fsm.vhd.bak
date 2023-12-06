@@ -1,0 +1,65 @@
+-- traffic_light_controller_fsm
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+entity traffic_light_controller_fsm is
+port(
+	clk, global_reset : in std_logic;
+	tlc_state : out std_logic_vector(1 downto 0);
+	tlc_state_change : out std_logic);
+end traffic_light_controller_fsm;
+
+architecture rtl of traffic_light_controller_fsm is
+
+-- conmponents
+component nBit_reg is
+generic ( n : positive := 4 );
+port(
+	parallel_in, preset, clear : in std_logic_vector(n-1 downto 0);		--preset, clear could be masks with preset = !clear
+	clk, en : in std_logic;
+	q, q_not: out std_logic_vector(n-1 downto 0));
+end component;
+
+component nBit_up_ripple_counter is
+generic (
+    n : positive := 4  -- Specify the number of bits
+);
+port(
+	clk, preset, clear, en : in std_logic;
+	target : in std_logic_vector(n-1 downto 0);
+	at_target : out std_logic;
+	total : out std_logic_vector(n-1 downto 0));
+end component;
+
+component nBit_mux4 is
+generic ( n : positive := 4 );
+port(
+	in3, in2, in1, in0 : in std_logic_vector(n-1 downto 0);
+	sel1, sel0 : in std_logic;
+	out0 : out std_logic_vector(n-1 downto 0));
+end component;
+
+
+-- wires
+signal clk_1hz, state_cntr_at_target, timer_cntr_en, timer_cntr_at_target : std_logic;
+signal state_cntr_total : std_logic_vector(1 downto 0);
+signal timer_cntr_target : std_logic_vector(4 downto 0);
+
+
+begin
+	--state_reg : nBit_reg generic map(2) port map(<<parallel_in>>, '0', global_reset, clk_1hz, '1', <<q>>, open);
+	
+	state_cntr : nBit_up_ripple_counter generic map(2) port map(clk, '0', global_reset, '1', "11", state_cntr_at_target, state_cntr_total);
+	
+	--change this
+	clk_1hz <= clk;
+	
+	timer_cntr_target <=
+	timer_cntr_en <=
+	timer_cntr : nBit_up_ripple_counter generic map(4) port map(clk_1hz, '0', global_reset, timer_cntr_en, timer_cntr_target, timer_cntr_at_target, open);
+	
+	<= timer_cntr_at_target
+	
+end rtl;

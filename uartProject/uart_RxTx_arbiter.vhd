@@ -1,0 +1,54 @@
+---- uart_RxTx_arbiter
+--
+--LIBRARY ieee;
+--USE ieee.std_logic_1164.ALL;
+--
+--
+--entity uart_RxTx_arbiter is
+--port(
+--	 : in std_logic;
+--	 : out std_logic);
+--end uart_RxTx_arbiter;
+--
+--architecture rtl of uart_RxTx_arbiter is
+--
+---- conmponents
+--signal uart_bus : std_logic_vector(7 downto 0);
+--
+---- wires
+----none
+--
+--begin
+--	--		Control Signals
+--	-- tx: tdr_empty, tx_buffer_empty
+--	-- rx: rdr_empty, rx_buffer_full
+--	-- errors: overrun_error, framing_error
+--	
+--	--		Registers
+--	-- tx: tdr, tx_buffer
+--	-- rx: rdr, rx_buffer
+--	-- uart_control_reg, uart_status_reg
+--	
+--	-- Controls: sel1, sel0, read_write_high
+--	States:  tx 00, 
+--				rx 01, 
+--		 control 10, 
+--		  status 11
+--		  
+--	-- Description of behavior
+--	-- When we begin, we set the control registe.
+--	-- After that, we proced to toggle between reading status and preforming tasks based on the statuses and priorities of the tasks
+--	--
+--						 state	 rw_h			action								Condition										Priority (high is more urgent)
+--						0		0		0		bus <= z
+--						0		0		1		bus <= tx_buffer, load_tdr		tdr_empty and not tx_buffer_empty		0
+--						0		1		0		bus <= rdr, load_rx_buffer		not rdr_empty									3
+--						0		1		1		-
+--						1		0		0		bus <= uart_control_reg			?													2
+--						1		0		1		uart_control_reg <= bus			?													2
+--						1		1		0		-							
+--						1		1		1		bus <= uart_status_reg			?													1
+--	
+--	
+--	
+--end rtl;

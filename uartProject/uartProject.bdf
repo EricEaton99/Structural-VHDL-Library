@@ -1,0 +1,359 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+*/
+(header "graphic" (version "1.4"))
+(pin
+	(input)
+	(rect 40 40 208 56)
+	(text "INPUT" (rect 125 0 184 18)(font "Arial" (font_size 6)))
+	(text "clk" (rect 5 0 32 22)(font "Arial" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 172 25)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -16 56 208 72)
+	(text "INPUT" (rect 181 0 240 18)(font "Arial" (font_size 6)))
+	(text "global_reset" (rect 5 0 128 22)(font "Arial" ))
+	(pt 224 8)
+	(drawing
+		(line (pt 140 12)(pt 165 12))
+		(line (pt 140 4)(pt 165 4))
+		(line (pt 169 8)(pt 224 8))
+		(line (pt 140 12)(pt 140 4))
+		(line (pt 165 4)(pt 169 8))
+		(line (pt 165 12)(pt 169 8))
+	)
+	(text "VCC" (rect 184 7 228 25)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -16 80 192 96)
+	(text "INPUT" (rect 165 0 224 18)(font "Arial" (font_size 6)))
+	(text "car_sensor" (rect 5 0 117 22)(font "Arial" ))
+	(pt 208 8)
+	(drawing
+		(line (pt 124 12)(pt 149 12))
+		(line (pt 124 4)(pt 149 4))
+		(line (pt 153 8)(pt 208 8))
+		(line (pt 124 12)(pt 124 4))
+		(line (pt 149 4)(pt 153 8))
+		(line (pt 149 12)(pt 153 8))
+	)
+	(text "VCC" (rect 168 7 212 25)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -40 112 200 128)
+	(text "INPUT" (rect 197 0 256 18)(font "Arial" (font_size 6)))
+	(text "baud_target[2..0]" (rect 5 0 144 18)(font "Arial" (font_size 6)))
+	(pt 240 8)
+	(drawing
+		(line (pt 156 12)(pt 181 12))
+		(line (pt 156 4)(pt 181 4))
+		(line (pt 185 8)(pt 240 8))
+		(line (pt 156 12)(pt 156 4))
+		(line (pt 181 4)(pt 185 8))
+		(line (pt 181 12)(pt 185 8))
+	)
+	(text "VCC" (rect 200 7 244 25)(font "Arial" (font_size 6)))
+)
+(pin
+	(output)
+	(rect 584 312 760 328)
+	(text "OUTPUT" (rect 1 0 82 18)(font "Arial" (font_size 6)))
+	(text "clk_1hz" (rect 90 0 165 22)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 608 280 784 296)
+	(text "OUTPUT" (rect 1 0 82 18)(font "Arial" (font_size 6)))
+	(text "clk_baud" (rect 90 0 164 18)(font "Arial" (font_size 6)))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 608 296 838 312)
+	(text "OUTPUT" (rect 1 0 82 18)(font "Arial" (font_size 6)))
+	(text "clk_baud_eighth" (rect 90 0 224 18)(font "Arial" (font_size 6)))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 1384 280 1560 296)
+	(text "OUTPUT" (rect 1 0 82 18)(font "Arial" (font_size 6)))
+	(text "tx" (rect 90 0 106 22)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 1264 296 1494 312)
+	(text "OUTPUT" (rect 1 0 82 18)(font "Arial" (font_size 6)))
+	(text "tlc_timer[3..0]" (rect 90 0 224 22)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(symbol
+	(rect 240 256 464 368)
+	(text "tlc_clock_generator" (rect 5 0 200 22)(font "Arial" ))
+	(text "inst11" (rect 8 96 68 118)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 27 22)(font "Arial" ))
+		(text "clk" (rect 21 27 48 49)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "global_reset" (rect 0 0 123 22)(font "Arial" ))
+		(text "global_reset" (rect 21 43 144 65)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "baud_sel[2..0]" (rect 0 0 141 22)(font "Arial" ))
+		(text "baud_sel[2..0]" (rect 21 59 162 81)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 224 32)
+		(output)
+		(text "clk_baud" (rect 0 0 89 22)(font "Arial" ))
+		(text "clk_baud" (rect 128 27 217 49)(font "Arial" ))
+		(line (pt 224 32)(pt 208 32))
+	)
+	(port
+		(pt 224 48)
+		(output)
+		(text "clk_baud_eighth" (rect 0 0 162 22)(font "Arial" ))
+		(text "clk_baud_eighth" (rect 66 43 228 65)(font "Arial" ))
+		(line (pt 224 48)(pt 208 48))
+	)
+	(port
+		(pt 224 64)
+		(output)
+		(text "clk_1hz" (rect 0 0 75 22)(font "Arial" ))
+		(text "clk_1hz" (rect 140 59 215 81)(font "Arial" ))
+		(line (pt 224 64)(pt 208 64))
+	)
+	(drawing
+		(rectangle (rect 16 16 208 96))
+	)
+)
+(symbol
+	(rect 1032 256 1232 400)
+	(text "traffic_light_tx" (rect 5 0 143 22)(font "Arial" ))
+	(text "inst" (rect 8 128 42 150)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clk" (rect 0 0 27 22)(font "Arial" ))
+		(text "clk" (rect 21 27 48 49)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk_baud" (rect 0 0 89 22)(font "Arial" ))
+		(text "clk_baud" (rect 21 43 110 65)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "clk_1hz" (rect 0 0 75 22)(font "Arial" ))
+		(text "clk_1hz" (rect 21 59 96 81)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "car_sensor" (rect 0 0 112 22)(font "Arial" ))
+		(text "car_sensor" (rect 21 75 133 97)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
+		(pt 0 96)
+		(input)
+		(text "global_reset" (rect 0 0 123 22)(font "Arial" ))
+		(text "global_reset" (rect 21 91 144 113)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96))
+	)
+	(port
+		(pt 200 32)
+		(output)
+		(text "tx" (rect 0 0 16 22)(font "Arial" ))
+		(text "tx" (rect 166 27 182 49)(font "Arial" ))
+		(line (pt 200 32)(pt 184 32))
+	)
+	(port
+		(pt 200 48)
+		(output)
+		(text "tlc_timer[3..0]" (rect 0 0 134 22)(font "Arial" ))
+		(text "tlc_timer[3..0]" (rect 66 43 200 65)(font "Arial" ))
+		(line (pt 200 48)(pt 184 48)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 184 128))
+	)
+)
+(connector
+	(text "global_reset" (rect 96 288 197 306)(font "Arial" (font_size 6)))
+	(pt 72 304)
+	(pt 240 304)
+)
+(connector
+	(text "clk" (rect 170 272 192 290)(font "Arial" (font_size 6)))
+	(pt 160 288)
+	(pt 240 288)
+)
+(connector
+	(text "clk_baud" (rect 482 272 556 290)(font "Arial" (font_size 6)))
+	(pt 464 288)
+	(pt 608 288)
+)
+(connector
+	(text "clk_1hz" (rect 482 304 543 322)(font "Arial" (font_size 6)))
+	(pt 464 320)
+	(pt 584 320)
+)
+(connector
+	(text "clk_baud_eighth" (rect 482 288 616 306)(font "Arial" (font_size 6)))
+	(pt 464 304)
+	(pt 608 304)
+)
+(connector
+	(text "clk" (rect 954 272 976 290)(font "Arial" (font_size 6)))
+	(pt 1032 288)
+	(pt 944 288)
+)
+(connector
+	(text "clk_baud" (rect 906 288 980 306)(font "Arial" (font_size 6)))
+	(pt 888 304)
+	(pt 1032 304)
+)
+(connector
+	(text "clk_1hz" (rect 930 304 991 322)(font "Arial" (font_size 6)))
+	(pt 912 320)
+	(pt 1032 320)
+)
+(connector
+	(text "car_sensor" (rect 890 320 982 338)(font "Arial" (font_size 6)))
+	(pt 1032 336)
+	(pt 880 336)
+)
+(connector
+	(text "global_reset" (rect 904 336 1005 354)(font "Arial" (font_size 6)))
+	(pt 1032 352)
+	(pt 880 352)
+)
+(connector
+	(text "tx" (rect 1242 272 1254 290)(font "Arial" (font_size 6)))
+	(pt 1232 288)
+	(pt 1384 288)
+)
+(connector
+	(text "clk" (rect 218 32 240 50)(font "Arial" (font_size 6)))
+	(pt 296 48)
+	(pt 208 48)
+)
+(connector
+	(text "global_reset" (rect 232 48 333 66)(font "Arial" (font_size 6)))
+	(pt 208 64)
+	(pt 376 64)
+)
+(connector
+	(text "car_sensor" (rect 202 72 294 90)(font "Arial" (font_size 6)))
+	(pt 192 88)
+	(pt 408 88)
+)
+(connector
+	(text "baud_target[2..0]" (rect 210 104 349 122)(font "Arial" (font_size 6)))
+	(pt 200 120)
+	(pt 376 120)
+	(bus)
+)
+(connector
+	(text "baud_target[2..0]" (rect 74 304 213 322)(font "Arial" (font_size 6)))
+	(pt 64 320)
+	(pt 240 320)
+	(bus)
+)
+(connector
+	(pt 1232 304)
+	(pt 1264 304)
+	(bus)
+)

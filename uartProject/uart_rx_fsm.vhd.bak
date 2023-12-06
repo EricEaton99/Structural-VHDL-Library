@@ -1,0 +1,23 @@
+-- uart_rx_fsm
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+entity uart_rx_fsm is
+port(
+	 : in std_logic;
+	 : out std_logic);
+end uart_rx_fsm;
+
+architecture rtl of uart_rx_fsm is
+
+-- conmponents
+--none
+
+-- wires
+--none
+
+begin
+	
+end rtl;

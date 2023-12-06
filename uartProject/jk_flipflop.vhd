@@ -1,0 +1,77 @@
+-- jk_flipflop
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+--	j	k	q	q'
+--	----------
+--	0	0	q	q'
+--	0	1	0	1
+--	1	0	1	0
+--	1	1	q'	q
+
+entity jk_flipflop is
+port(
+	j, k, clk, en, preset, clear : in std_logic;
+	q, q_not: out std_logic);
+end jk_flipflop;
+
+architecture rtl of jk_flipflop is
+
+-- conmponents
+component sr_latch is
+port(
+	s, r, en : in std_logic;
+	q, q_not: out std_logic);
+end component;
+
+-- wires
+signal s, r, t_q, t_q_not : std_logic;
+
+begin	
+--	s <= not(j and clk and t_q_not);
+--	r <= not(k and clk and t_q);
+--	
+--	t_q <= not(s and t_q_not and preset);
+--	t_q_not <= not(r and t_q and clear);
+	
+	
+--	s <= (j and clk and t_q_not);
+--	r <= (k and clk and t_q);
+--	
+--	t_q <= not(s and t_q_not);
+--	t_q_not <= not(r and t_q);
+	
+	
+--	sr : sr_latch port map(s,r,en,t_q,t_q_not);
+--
+--	sr0 : sr_latch port map(j,k,clk,s,r);
+--	sr1 : sr_latch port map(s,r,en,t_q,t_q_not);
+
+
+	process(t_q)
+	begin
+		if clear = '1' then
+			t_q <= '0';
+		elsif preset = '1' then
+			t_q <= '1';
+		elsif rising_edge(clk) then
+			if en = '1' then
+				if j = '0' and k = '0' then
+					t_q <= t_q;
+				elsif j = '0' and k = '1' then
+					t_q <= '0';
+				elsif j = '1' and k = '0' then
+					t_q <= '1';
+				else
+					t_q <= not t_q;
+				end if;
+			end if;
+		end if;
+	end process;
+	
+	
+	q <= t_q;
+	q_not <= not t_q; --t_q_not; 
+	
+end rtl;

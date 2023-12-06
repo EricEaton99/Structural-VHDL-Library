@@ -1,0 +1,5001 @@
+|uartProject
+clk_1hz <= tlc_clock_generator:inst11.clk_1hz
+clk => tlc_clock_generator:inst11.clk
+clk => traffic_light_tx:inst.clk
+global_reset => tlc_clock_generator:inst11.global_reset
+global_reset => traffic_light_tx:inst.global_reset
+baud_target[0] => tlc_clock_generator:inst11.baud_sel[0]
+baud_target[1] => tlc_clock_generator:inst11.baud_sel[1]
+baud_target[2] => tlc_clock_generator:inst11.baud_sel[2]
+clk_baud <= tlc_clock_generator:inst11.clk_baud
+clk_baud_eighth <= tlc_clock_generator:inst11.clk_baud_eighth
+tx <= traffic_light_tx:inst.tx
+car_sensor => traffic_light_tx:inst.car_sensor
+tlc_timer[0] <= traffic_light_tx:inst.tlc_timer[0]
+tlc_timer[1] <= traffic_light_tx:inst.tlc_timer[1]
+tlc_timer[2] <= traffic_light_tx:inst.tlc_timer[2]
+tlc_timer[3] <= traffic_light_tx:inst.tlc_timer[3]
+
+
+|uartProject|tlc_clock_generator:inst11
+clk => nBit_counter_sync_clear:clk_div_41.clk
+global_reset => nBit_counter_sync_clear:clk_div_41.global_reset
+global_reset => nBit_counter_sync_clear:clk_div_256.global_reset
+global_reset => nBit_counter_sync_clear:clk_div_8.global_reset
+global_reset => nBit_counter_sync_clear:clk_div_150.global_reset
+baud_sel[0] => mux8:baud_mux.sel[0]
+baud_sel[1] => mux8:baud_mux.sel[1]
+baud_sel[2] => mux8:baud_mux.sel[2]
+clk_baud <= nBit_counter_sync_clear:clk_div_8.at_target
+clk_baud_eighth <= mux8:baud_mux.output
+clk_1hz <= nBit_counter_sync_clear:clk_div_150.at_target
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41
+clk => nBit_reg:counter_reg.clk
+en => en_temp.IN1
+global_reset => nBit_reg:counter_reg.clear[5]
+global_reset => nBit_reg:counter_reg.clear[4]
+global_reset => nBit_reg:counter_reg.clear[3]
+global_reset => nBit_reg:counter_reg.clear[2]
+global_reset => nBit_reg:counter_reg.clear[1]
+global_reset => nBit_reg:counter_reg.clear[0]
+clear_sync => en_temp.IN1
+clear_sync => parallel_in[0].IN1
+clear_sync => parallel_in[1].IN1
+clear_sync => parallel_in[2].IN1
+clear_sync => parallel_in[3].IN1
+clear_sync => parallel_in[4].IN1
+clear_sync => parallel_in[5].IN1
+target[0] => Equal0.IN5
+target[1] => Equal0.IN4
+target[2] => Equal0.IN3
+target[3] => Equal0.IN2
+target[4] => Equal0.IN1
+target[5] => Equal0.IN0
+at_target <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+total[0] <= nBit_reg:counter_reg.q[0]
+total[1] <= nBit_reg:counter_reg.q[1]
+total[2] <= nBit_reg:counter_reg.q[2]
+total[3] <= nBit_reg:counter_reg.q[3]
+total[4] <= nBit_reg:counter_reg.q[4]
+total[5] <= nBit_reg:counter_reg.q[5]
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|andN:\loop0:1:andN_i
+inN[0] => anded.DATAIN
+anded <= inN[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|andN:\loop0:2:andN_i
+inN[0] => Equal0.IN1
+inN[1] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|andN:\loop0:3:andN_i
+inN[0] => Equal0.IN2
+inN[1] => Equal0.IN1
+inN[2] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|andN:\loop0:4:andN_i
+inN[0] => Equal0.IN3
+inN[1] => Equal0.IN2
+inN[2] => Equal0.IN1
+inN[3] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|andN:\loop0:5:andN_i
+inN[0] => Equal0.IN4
+inN[1] => Equal0.IN3
+inN[2] => Equal0.IN2
+inN[3] => Equal0.IN1
+inN[4] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256
+clk => nBit_reg:counter_reg.clk
+en => en_temp.IN1
+global_reset => nBit_reg:counter_reg.clear[7]
+global_reset => nBit_reg:counter_reg.clear[6]
+global_reset => nBit_reg:counter_reg.clear[5]
+global_reset => nBit_reg:counter_reg.clear[4]
+global_reset => nBit_reg:counter_reg.clear[3]
+global_reset => nBit_reg:counter_reg.clear[2]
+global_reset => nBit_reg:counter_reg.clear[1]
+global_reset => nBit_reg:counter_reg.clear[0]
+clear_sync => en_temp.IN1
+clear_sync => parallel_in[0].IN1
+clear_sync => parallel_in[1].IN1
+clear_sync => parallel_in[2].IN1
+clear_sync => parallel_in[3].IN1
+clear_sync => parallel_in[4].IN1
+clear_sync => parallel_in[5].IN1
+clear_sync => parallel_in[6].IN1
+clear_sync => parallel_in[7].IN1
+target[0] => Equal0.IN7
+target[1] => Equal0.IN6
+target[2] => Equal0.IN5
+target[3] => Equal0.IN4
+target[4] => Equal0.IN3
+target[5] => Equal0.IN2
+target[6] => Equal0.IN1
+target[7] => Equal0.IN0
+at_target <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+total[0] <= nBit_reg:counter_reg.q[0]
+total[1] <= nBit_reg:counter_reg.q[1]
+total[2] <= nBit_reg:counter_reg.q[2]
+total[3] <= nBit_reg:counter_reg.q[3]
+total[4] <= nBit_reg:counter_reg.q[4]
+total[5] <= nBit_reg:counter_reg.q[5]
+total[6] <= nBit_reg:counter_reg.q[6]
+total[7] <= nBit_reg:counter_reg.q[7]
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|andN:\loop0:1:andN_i
+inN[0] => anded.DATAIN
+anded <= inN[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|andN:\loop0:2:andN_i
+inN[0] => Equal0.IN1
+inN[1] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|andN:\loop0:3:andN_i
+inN[0] => Equal0.IN2
+inN[1] => Equal0.IN1
+inN[2] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|andN:\loop0:4:andN_i
+inN[0] => Equal0.IN3
+inN[1] => Equal0.IN2
+inN[2] => Equal0.IN1
+inN[3] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|andN:\loop0:5:andN_i
+inN[0] => Equal0.IN4
+inN[1] => Equal0.IN3
+inN[2] => Equal0.IN2
+inN[3] => Equal0.IN1
+inN[4] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|andN:\loop0:6:andN_i
+inN[0] => Equal0.IN5
+inN[1] => Equal0.IN4
+inN[2] => Equal0.IN3
+inN[3] => Equal0.IN2
+inN[4] => Equal0.IN1
+inN[5] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|andN:\loop0:7:andN_i
+inN[0] => Equal0.IN6
+inN[1] => Equal0.IN5
+inN[2] => Equal0.IN4
+inN[3] => Equal0.IN3
+inN[4] => Equal0.IN2
+inN[5] => Equal0.IN1
+inN[6] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+parallel_in[6] => d_flipflop:loop0:6:dff.d
+parallel_in[7] => d_flipflop:loop0:7:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+preset[6] => d_flipflop:loop0:6:dff.preset
+preset[7] => d_flipflop:loop0:7:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clear[6] => d_flipflop:loop0:6:dff.clear
+clear[7] => d_flipflop:loop0:7:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+clk => d_flipflop:loop0:6:dff.clk
+clk => d_flipflop:loop0:7:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+en => d_flipflop:loop0:6:dff.en
+en => d_flipflop:loop0:7:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q[6] <= d_flipflop:loop0:6:dff.q
+q[7] <= d_flipflop:loop0:7:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+q_not[6] <= d_flipflop:loop0:6:dff.q_not
+q_not[7] <= d_flipflop:loop0:7:dff.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:6:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:6:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|mux8:baud_mux
+inputs[0] => mux4:mux4_low.in0
+inputs[1] => mux4:mux4_low.in1
+inputs[2] => mux4:mux4_low.in2
+inputs[3] => mux4:mux4_low.in3
+inputs[4] => mux4:mux4_high.in0
+inputs[5] => mux4:mux4_high.in1
+inputs[6] => mux4:mux4_high.in2
+inputs[7] => mux4:mux4_high.in3
+sel[0] => mux4:mux4_low.sel0
+sel[0] => mux4:mux4_high.sel0
+sel[1] => mux4:mux4_low.sel1
+sel[1] => mux4:mux4_high.sel1
+sel[2] => mux2:mux2_msb.sel0
+output <= mux2:mux2_msb.out0
+
+
+|uartProject|tlc_clock_generator:inst11|mux8:baud_mux|mux4:mux4_low
+in3 => out0.IN0
+in2 => out0.IN0
+in1 => out0.IN0
+in0 => out0.IN0
+sel1 => out0.IN1
+sel1 => out0.IN1
+sel1 => out0.IN1
+sel1 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|mux8:baud_mux|mux4:mux4_high
+in3 => out0.IN0
+in2 => out0.IN0
+in1 => out0.IN0
+in0 => out0.IN0
+sel1 => out0.IN1
+sel1 => out0.IN1
+sel1 => out0.IN1
+sel1 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|mux8:baud_mux|mux2:mux2_msb
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8
+clk => nBit_reg:counter_reg.clk
+en => en_temp.IN1
+global_reset => nBit_reg:counter_reg.clear[2]
+global_reset => nBit_reg:counter_reg.clear[1]
+global_reset => nBit_reg:counter_reg.clear[0]
+clear_sync => en_temp.IN1
+clear_sync => parallel_in[0].IN1
+clear_sync => parallel_in[1].IN1
+clear_sync => parallel_in[2].IN1
+target[0] => Equal0.IN2
+target[1] => Equal0.IN1
+target[2] => Equal0.IN0
+at_target <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+total[0] <= nBit_reg:counter_reg.q[0]
+total[1] <= nBit_reg:counter_reg.q[1]
+total[2] <= nBit_reg:counter_reg.q[2]
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|andN:\loop0:1:andN_i
+inN[0] => anded.DATAIN
+anded <= inN[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|andN:\loop0:2:andN_i
+inN[0] => Equal0.IN1
+inN[1] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150
+clk => nBit_reg:counter_reg.clk
+en => en_temp.IN1
+global_reset => nBit_reg:counter_reg.clear[7]
+global_reset => nBit_reg:counter_reg.clear[6]
+global_reset => nBit_reg:counter_reg.clear[5]
+global_reset => nBit_reg:counter_reg.clear[4]
+global_reset => nBit_reg:counter_reg.clear[3]
+global_reset => nBit_reg:counter_reg.clear[2]
+global_reset => nBit_reg:counter_reg.clear[1]
+global_reset => nBit_reg:counter_reg.clear[0]
+clear_sync => en_temp.IN1
+clear_sync => parallel_in[0].IN1
+clear_sync => parallel_in[1].IN1
+clear_sync => parallel_in[2].IN1
+clear_sync => parallel_in[3].IN1
+clear_sync => parallel_in[4].IN1
+clear_sync => parallel_in[5].IN1
+clear_sync => parallel_in[6].IN1
+clear_sync => parallel_in[7].IN1
+target[0] => Equal0.IN7
+target[1] => Equal0.IN6
+target[2] => Equal0.IN5
+target[3] => Equal0.IN4
+target[4] => Equal0.IN3
+target[5] => Equal0.IN2
+target[6] => Equal0.IN1
+target[7] => Equal0.IN0
+at_target <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+total[0] <= nBit_reg:counter_reg.q[0]
+total[1] <= nBit_reg:counter_reg.q[1]
+total[2] <= nBit_reg:counter_reg.q[2]
+total[3] <= nBit_reg:counter_reg.q[3]
+total[4] <= nBit_reg:counter_reg.q[4]
+total[5] <= nBit_reg:counter_reg.q[5]
+total[6] <= nBit_reg:counter_reg.q[6]
+total[7] <= nBit_reg:counter_reg.q[7]
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|andN:\loop0:1:andN_i
+inN[0] => anded.DATAIN
+anded <= inN[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|andN:\loop0:2:andN_i
+inN[0] => Equal0.IN1
+inN[1] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|andN:\loop0:3:andN_i
+inN[0] => Equal0.IN2
+inN[1] => Equal0.IN1
+inN[2] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|andN:\loop0:4:andN_i
+inN[0] => Equal0.IN3
+inN[1] => Equal0.IN2
+inN[2] => Equal0.IN1
+inN[3] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|andN:\loop0:5:andN_i
+inN[0] => Equal0.IN4
+inN[1] => Equal0.IN3
+inN[2] => Equal0.IN2
+inN[3] => Equal0.IN1
+inN[4] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|andN:\loop0:6:andN_i
+inN[0] => Equal0.IN5
+inN[1] => Equal0.IN4
+inN[2] => Equal0.IN3
+inN[3] => Equal0.IN2
+inN[4] => Equal0.IN1
+inN[5] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|andN:\loop0:7:andN_i
+inN[0] => Equal0.IN6
+inN[1] => Equal0.IN5
+inN[2] => Equal0.IN4
+inN[3] => Equal0.IN3
+inN[4] => Equal0.IN2
+inN[5] => Equal0.IN1
+inN[6] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+parallel_in[6] => d_flipflop:loop0:6:dff.d
+parallel_in[7] => d_flipflop:loop0:7:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+preset[6] => d_flipflop:loop0:6:dff.preset
+preset[7] => d_flipflop:loop0:7:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clear[6] => d_flipflop:loop0:6:dff.clear
+clear[7] => d_flipflop:loop0:7:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+clk => d_flipflop:loop0:6:dff.clk
+clk => d_flipflop:loop0:7:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+en => d_flipflop:loop0:6:dff.en
+en => d_flipflop:loop0:7:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q[6] <= d_flipflop:loop0:6:dff.q
+q[7] <= d_flipflop:loop0:7:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+q_not[6] <= d_flipflop:loop0:6:dff.q_not
+q_not[7] <= d_flipflop:loop0:7:dff.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:6:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:6:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst
+clk => uart_tx_fsm:message_transmitter.clk
+clk_baud => pulse_length_trim:state_change_trim.clk
+clk_baud => tlc_tx_message_buffer:message_buffer.clk
+clk_baud => uart_tx_fsm:message_transmitter.clk_baud
+clk_1hz => traffic_light_controller_fsm:state_generator.clk_1hz
+car_sensor => traffic_light_controller_fsm:state_generator.car_sensor
+global_reset => traffic_light_controller_fsm:state_generator.global_reset
+global_reset => pulse_length_trim:state_change_trim.global_reset
+global_reset => tlc_tx_message_buffer:message_buffer.global_reset
+global_reset => uart_tx_fsm:message_transmitter.global_reset
+tx <= uart_tx_fsm:message_transmitter.tx
+tlc_timer[0] <= traffic_light_controller_fsm:state_generator.tlc_timer[0]
+tlc_timer[1] <= traffic_light_controller_fsm:state_generator.tlc_timer[1]
+tlc_timer[2] <= traffic_light_controller_fsm:state_generator.tlc_timer[2]
+tlc_timer[3] <= traffic_light_controller_fsm:state_generator.tlc_timer[3]
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator
+clk_1hz => counter_4bits_sync_clear:state_cntr.clk
+clk_1hz => counter_4bits_sync_clear:timer_cntr.clk
+global_reset => counter_4bits_sync_clear:state_cntr.global_reset
+global_reset => counter_4bits_sync_clear:timer_cntr.global_reset
+car_sensor => state_cntr_en.IN1
+tlc_state[0] <= counter_4bits_sync_clear:state_cntr.total[0]
+tlc_state[1] <= counter_4bits_sync_clear:state_cntr.total[1]
+tlc_timer[0] <= counter_4bits_sync_clear:timer_cntr.total[0]
+tlc_timer[1] <= counter_4bits_sync_clear:timer_cntr.total[1]
+tlc_timer[2] <= counter_4bits_sync_clear:timer_cntr.total[2]
+tlc_timer[3] <= counter_4bits_sync_clear:timer_cntr.total[3]
+tlc_state_change <= state_cntr_en.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr
+clk => nBit_reg:counter_reg.clk
+en => en_temp.IN1
+global_reset => nBit_reg:counter_reg.clear[3]
+global_reset => nBit_reg:counter_reg.clear[2]
+global_reset => nBit_reg:counter_reg.clear[1]
+global_reset => nBit_reg:counter_reg.clear[0]
+clear_sync => en_temp.IN1
+clear_sync => parallel_in[0].IN1
+clear_sync => parallel_in[1].IN1
+clear_sync => parallel_in[2].IN1
+clear_sync => parallel_in[3].IN1
+target[0] => Equal0.IN3
+target[1] => Equal0.IN2
+target[2] => Equal0.IN1
+target[3] => Equal0.IN0
+at_target <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+total[0] <= nBit_reg:counter_reg.q[0]
+total[1] <= nBit_reg:counter_reg.q[1]
+total[2] <= nBit_reg:counter_reg.q[2]
+total[3] <= nBit_reg:counter_reg.q[3]
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:state_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|nBit_mux4:timer_target_mux
+in3[0] => nBit_mux2:mux2_1x.in1[0]
+in3[1] => nBit_mux2:mux2_1x.in1[1]
+in3[2] => nBit_mux2:mux2_1x.in1[2]
+in3[3] => nBit_mux2:mux2_1x.in1[3]
+in2[0] => nBit_mux2:mux2_1x.in0[0]
+in2[1] => nBit_mux2:mux2_1x.in0[1]
+in2[2] => nBit_mux2:mux2_1x.in0[2]
+in2[3] => nBit_mux2:mux2_1x.in0[3]
+in1[0] => nBit_mux2:mux2_0x.in1[0]
+in1[1] => nBit_mux2:mux2_0x.in1[1]
+in1[2] => nBit_mux2:mux2_0x.in1[2]
+in1[3] => nBit_mux2:mux2_0x.in1[3]
+in0[0] => nBit_mux2:mux2_0x.in0[0]
+in0[1] => nBit_mux2:mux2_0x.in0[1]
+in0[2] => nBit_mux2:mux2_0x.in0[2]
+in0[3] => nBit_mux2:mux2_0x.in0[3]
+sel1 => nBit_mux2:mux2_x.sel0
+sel0 => nBit_mux2:mux2_0x.sel0
+sel0 => nBit_mux2:mux2_1x.sel0
+out0[0] <= nBit_mux2:mux2_x.out0[0]
+out0[1] <= nBit_mux2:mux2_x.out0[1]
+out0[2] <= nBit_mux2:mux2_x.out0[2]
+out0[3] <= nBit_mux2:mux2_x.out0[3]
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|nBit_mux4:timer_target_mux|nBit_mux2:mux2_0x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|nBit_mux4:timer_target_mux|nBit_mux2:mux2_1x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|nBit_mux4:timer_target_mux|nBit_mux2:mux2_x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr
+clk => nBit_reg:counter_reg.clk
+en => en_temp.IN1
+global_reset => nBit_reg:counter_reg.clear[3]
+global_reset => nBit_reg:counter_reg.clear[2]
+global_reset => nBit_reg:counter_reg.clear[1]
+global_reset => nBit_reg:counter_reg.clear[0]
+clear_sync => en_temp.IN1
+clear_sync => parallel_in[0].IN1
+clear_sync => parallel_in[1].IN1
+clear_sync => parallel_in[2].IN1
+clear_sync => parallel_in[3].IN1
+target[0] => Equal0.IN3
+target[1] => Equal0.IN2
+target[2] => Equal0.IN1
+target[3] => Equal0.IN0
+at_target <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+total[0] <= nBit_reg:counter_reg.q[0]
+total[1] <= nBit_reg:counter_reg.q[1]
+total[2] <= nBit_reg:counter_reg.q[2]
+total[3] <= nBit_reg:counter_reg.q[3]
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_fsm:state_generator|counter_4bits_sync_clear:timer_cntr|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|pulse_length_trim:state_change_trim
+clk => d_flipflop:d0_ff.clk
+clk => d_flipflop:d1_ff.clk
+global_reset => d_flipflop:d0_ff.clear
+global_reset => d_flipflop:d1_ff.clear
+pulse_long => comb.IN1
+pulse_long => comb.IN1
+pulse_long => comb.IN1
+pulse_trimmed <= pulse_trimmed.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|pulse_length_trim:state_change_trim|d_flipflop:d0_ff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|pulse_length_trim:state_change_trim|d_flipflop:d0_ff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|pulse_length_trim:state_change_trim|d_flipflop:d1_ff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|pulse_length_trim:state_change_trim|d_flipflop:d1_ff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler
+state[0] => nBit_mux4:b4_mux.sel0
+state[0] => nBit_mux4:b2_mux.sel0
+state[1] => nBit_mux4:b4_mux.sel1
+state[1] => nBit_mux4:b2_mux.sel1
+tx_message[0] <= <VCC>
+tx_message[1] <= <GND>
+tx_message[2] <= <VCC>
+tx_message[3] <= <VCC>
+tx_message[4] <= <GND>
+tx_message[5] <= <GND>
+tx_message[6] <= <GND>
+tx_message[7] <= nBit_mux4:b2_mux.out0[0]
+tx_message[8] <= nBit_mux4:b2_mux.out0[1]
+tx_message[9] <= nBit_mux4:b2_mux.out0[2]
+tx_message[10] <= nBit_mux4:b2_mux.out0[3]
+tx_message[11] <= nBit_mux4:b2_mux.out0[4]
+tx_message[12] <= nBit_mux4:b2_mux.out0[5]
+tx_message[13] <= nBit_mux4:b2_mux.out0[6]
+tx_message[14] <= <VCC>
+tx_message[15] <= <VCC>
+tx_message[16] <= <GND>
+tx_message[17] <= <GND>
+tx_message[18] <= <VCC>
+tx_message[19] <= <GND>
+tx_message[20] <= <VCC>
+tx_message[21] <= <VCC>
+tx_message[22] <= <VCC>
+tx_message[23] <= <VCC>
+tx_message[24] <= <VCC>
+tx_message[25] <= <VCC>
+tx_message[26] <= <GND>
+tx_message[27] <= <VCC>
+tx_message[28] <= nBit_mux4:b4_mux.out0[0]
+tx_message[29] <= nBit_mux4:b4_mux.out0[1]
+tx_message[30] <= nBit_mux4:b4_mux.out0[2]
+tx_message[31] <= nBit_mux4:b4_mux.out0[3]
+tx_message[32] <= nBit_mux4:b4_mux.out0[4]
+tx_message[33] <= nBit_mux4:b4_mux.out0[5]
+tx_message[34] <= nBit_mux4:b4_mux.out0[6]
+tx_message[35] <= <VCC>
+tx_message[36] <= <GND>
+tx_message[37] <= <VCC>
+tx_message[38] <= <VCC>
+tx_message[39] <= <GND>
+tx_message[40] <= <GND>
+tx_message[41] <= <VCC>
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler|nBit_mux4:b4_mux
+in3[0] => nBit_mux2:mux2_1x.in1[0]
+in3[1] => nBit_mux2:mux2_1x.in1[1]
+in3[2] => nBit_mux2:mux2_1x.in1[2]
+in3[3] => nBit_mux2:mux2_1x.in1[3]
+in3[4] => nBit_mux2:mux2_1x.in1[4]
+in3[5] => nBit_mux2:mux2_1x.in1[5]
+in3[6] => nBit_mux2:mux2_1x.in1[6]
+in2[0] => nBit_mux2:mux2_1x.in0[0]
+in2[1] => nBit_mux2:mux2_1x.in0[1]
+in2[2] => nBit_mux2:mux2_1x.in0[2]
+in2[3] => nBit_mux2:mux2_1x.in0[3]
+in2[4] => nBit_mux2:mux2_1x.in0[4]
+in2[5] => nBit_mux2:mux2_1x.in0[5]
+in2[6] => nBit_mux2:mux2_1x.in0[6]
+in1[0] => nBit_mux2:mux2_0x.in1[0]
+in1[1] => nBit_mux2:mux2_0x.in1[1]
+in1[2] => nBit_mux2:mux2_0x.in1[2]
+in1[3] => nBit_mux2:mux2_0x.in1[3]
+in1[4] => nBit_mux2:mux2_0x.in1[4]
+in1[5] => nBit_mux2:mux2_0x.in1[5]
+in1[6] => nBit_mux2:mux2_0x.in1[6]
+in0[0] => nBit_mux2:mux2_0x.in0[0]
+in0[1] => nBit_mux2:mux2_0x.in0[1]
+in0[2] => nBit_mux2:mux2_0x.in0[2]
+in0[3] => nBit_mux2:mux2_0x.in0[3]
+in0[4] => nBit_mux2:mux2_0x.in0[4]
+in0[5] => nBit_mux2:mux2_0x.in0[5]
+in0[6] => nBit_mux2:mux2_0x.in0[6]
+sel1 => nBit_mux2:mux2_x.sel0
+sel0 => nBit_mux2:mux2_0x.sel0
+sel0 => nBit_mux2:mux2_1x.sel0
+out0[0] <= nBit_mux2:mux2_x.out0[0]
+out0[1] <= nBit_mux2:mux2_x.out0[1]
+out0[2] <= nBit_mux2:mux2_x.out0[2]
+out0[3] <= nBit_mux2:mux2_x.out0[3]
+out0[4] <= nBit_mux2:mux2_x.out0[4]
+out0[5] <= nBit_mux2:mux2_x.out0[5]
+out0[6] <= nBit_mux2:mux2_x.out0[6]
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler|nBit_mux4:b4_mux|nBit_mux2:mux2_0x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in1[4] => out0.IN0
+in1[5] => out0.IN0
+in1[6] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+in0[4] => out0.IN0
+in0[5] => out0.IN0
+in0[6] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[4] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[5] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[6] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler|nBit_mux4:b4_mux|nBit_mux2:mux2_1x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in1[4] => out0.IN0
+in1[5] => out0.IN0
+in1[6] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+in0[4] => out0.IN0
+in0[5] => out0.IN0
+in0[6] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[4] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[5] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[6] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler|nBit_mux4:b4_mux|nBit_mux2:mux2_x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in1[4] => out0.IN0
+in1[5] => out0.IN0
+in1[6] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+in0[4] => out0.IN0
+in0[5] => out0.IN0
+in0[6] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[4] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[5] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[6] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler|nBit_mux4:b2_mux
+in3[0] => nBit_mux2:mux2_1x.in1[0]
+in3[1] => nBit_mux2:mux2_1x.in1[1]
+in3[2] => nBit_mux2:mux2_1x.in1[2]
+in3[3] => nBit_mux2:mux2_1x.in1[3]
+in3[4] => nBit_mux2:mux2_1x.in1[4]
+in3[5] => nBit_mux2:mux2_1x.in1[5]
+in3[6] => nBit_mux2:mux2_1x.in1[6]
+in2[0] => nBit_mux2:mux2_1x.in0[0]
+in2[1] => nBit_mux2:mux2_1x.in0[1]
+in2[2] => nBit_mux2:mux2_1x.in0[2]
+in2[3] => nBit_mux2:mux2_1x.in0[3]
+in2[4] => nBit_mux2:mux2_1x.in0[4]
+in2[5] => nBit_mux2:mux2_1x.in0[5]
+in2[6] => nBit_mux2:mux2_1x.in0[6]
+in1[0] => nBit_mux2:mux2_0x.in1[0]
+in1[1] => nBit_mux2:mux2_0x.in1[1]
+in1[2] => nBit_mux2:mux2_0x.in1[2]
+in1[3] => nBit_mux2:mux2_0x.in1[3]
+in1[4] => nBit_mux2:mux2_0x.in1[4]
+in1[5] => nBit_mux2:mux2_0x.in1[5]
+in1[6] => nBit_mux2:mux2_0x.in1[6]
+in0[0] => nBit_mux2:mux2_0x.in0[0]
+in0[1] => nBit_mux2:mux2_0x.in0[1]
+in0[2] => nBit_mux2:mux2_0x.in0[2]
+in0[3] => nBit_mux2:mux2_0x.in0[3]
+in0[4] => nBit_mux2:mux2_0x.in0[4]
+in0[5] => nBit_mux2:mux2_0x.in0[5]
+in0[6] => nBit_mux2:mux2_0x.in0[6]
+sel1 => nBit_mux2:mux2_x.sel0
+sel0 => nBit_mux2:mux2_0x.sel0
+sel0 => nBit_mux2:mux2_1x.sel0
+out0[0] <= nBit_mux2:mux2_x.out0[0]
+out0[1] <= nBit_mux2:mux2_x.out0[1]
+out0[2] <= nBit_mux2:mux2_x.out0[2]
+out0[3] <= nBit_mux2:mux2_x.out0[3]
+out0[4] <= nBit_mux2:mux2_x.out0[4]
+out0[5] <= nBit_mux2:mux2_x.out0[5]
+out0[6] <= nBit_mux2:mux2_x.out0[6]
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler|nBit_mux4:b2_mux|nBit_mux2:mux2_0x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in1[4] => out0.IN0
+in1[5] => out0.IN0
+in1[6] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+in0[4] => out0.IN0
+in0[5] => out0.IN0
+in0[6] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[4] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[5] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[6] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler|nBit_mux4:b2_mux|nBit_mux2:mux2_1x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in1[4] => out0.IN0
+in1[5] => out0.IN0
+in1[6] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+in0[4] => out0.IN0
+in0[5] => out0.IN0
+in0[6] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[4] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[5] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[6] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|traffic_light_controller_tx_message_compiler:message_compiler|nBit_mux4:b2_mux|nBit_mux2:mux2_x
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in1[4] => out0.IN0
+in1[5] => out0.IN0
+in1[6] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+in0[4] => out0.IN0
+in0[5] => out0.IN0
+in0[6] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[4] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[5] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[6] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer
+tx_message[0] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[0]
+tx_message[1] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[1]
+tx_message[2] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[2]
+tx_message[3] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[3]
+tx_message[4] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[4]
+tx_message[5] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[5]
+tx_message[6] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[6]
+tx_message[7] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[7]
+tx_message[8] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[8]
+tx_message[9] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[9]
+tx_message[10] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[10]
+tx_message[11] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[11]
+tx_message[12] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[12]
+tx_message[13] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[13]
+tx_message[14] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[14]
+tx_message[15] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[15]
+tx_message[16] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[16]
+tx_message[17] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[17]
+tx_message[18] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[18]
+tx_message[19] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[19]
+tx_message[20] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[20]
+tx_message[21] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[21]
+tx_message[22] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[22]
+tx_message[23] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[23]
+tx_message[24] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[24]
+tx_message[25] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[25]
+tx_message[26] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[26]
+tx_message[27] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[27]
+tx_message[28] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[28]
+tx_message[29] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[29]
+tx_message[30] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[30]
+tx_message[31] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[31]
+tx_message[32] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[32]
+tx_message[33] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[33]
+tx_message[34] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[34]
+tx_message[35] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[35]
+tx_message[36] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[36]
+tx_message[37] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[37]
+tx_message[38] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[38]
+tx_message[39] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[39]
+tx_message[40] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[40]
+tx_message[41] => nChar_acsii7_shift_reg:ascii_reg.parallel_in[41]
+load_message => ascii_reg_en.IN1
+global_reset => nChar_acsii7_shift_reg:ascii_reg.global_reset
+clk => nChar_acsii7_shift_reg:ascii_reg.clk
+next_char => ascii_reg_en.IN1
+ascii_char[0] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[0]
+ascii_char[1] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[1]
+ascii_char[2] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[2]
+ascii_char[3] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[3]
+ascii_char[4] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[4]
+ascii_char[5] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[5]
+ascii_char[6] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[6]
+buffer_empty <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+ascii_chars[0] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[0]
+ascii_chars[1] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[1]
+ascii_chars[2] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[2]
+ascii_chars[3] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[3]
+ascii_chars[4] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[4]
+ascii_chars[5] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[5]
+ascii_chars[6] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[6]
+ascii_chars[7] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[7]
+ascii_chars[8] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[8]
+ascii_chars[9] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[9]
+ascii_chars[10] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[10]
+ascii_chars[11] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[11]
+ascii_chars[12] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[12]
+ascii_chars[13] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[13]
+ascii_chars[14] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[14]
+ascii_chars[15] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[15]
+ascii_chars[16] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[16]
+ascii_chars[17] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[17]
+ascii_chars[18] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[18]
+ascii_chars[19] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[19]
+ascii_chars[20] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[20]
+ascii_chars[21] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[21]
+ascii_chars[22] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[22]
+ascii_chars[23] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[23]
+ascii_chars[24] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[24]
+ascii_chars[25] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[25]
+ascii_chars[26] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[26]
+ascii_chars[27] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[27]
+ascii_chars[28] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[28]
+ascii_chars[29] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[29]
+ascii_chars[30] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[30]
+ascii_chars[31] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[31]
+ascii_chars[32] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[32]
+ascii_chars[33] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[33]
+ascii_chars[34] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[34]
+ascii_chars[35] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[35]
+ascii_chars[36] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[36]
+ascii_chars[37] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[37]
+ascii_chars[38] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[38]
+ascii_chars[39] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[39]
+ascii_chars[40] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[40]
+ascii_chars[41] <= nChar_acsii7_shift_reg:ascii_reg.parallel_out[41]
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg
+parallel_in[0] => nBit_mux2:shift_load_high_mux.in1[0]
+parallel_in[1] => nBit_mux2:shift_load_high_mux.in1[1]
+parallel_in[2] => nBit_mux2:shift_load_high_mux.in1[2]
+parallel_in[3] => nBit_mux2:shift_load_high_mux.in1[3]
+parallel_in[4] => nBit_mux2:shift_load_high_mux.in1[4]
+parallel_in[5] => nBit_mux2:shift_load_high_mux.in1[5]
+parallel_in[6] => nBit_mux2:shift_load_high_mux.in1[6]
+parallel_in[7] => nBit_mux2:shift_load_high_mux.in1[7]
+parallel_in[8] => nBit_mux2:shift_load_high_mux.in1[8]
+parallel_in[9] => nBit_mux2:shift_load_high_mux.in1[9]
+parallel_in[10] => nBit_mux2:shift_load_high_mux.in1[10]
+parallel_in[11] => nBit_mux2:shift_load_high_mux.in1[11]
+parallel_in[12] => nBit_mux2:shift_load_high_mux.in1[12]
+parallel_in[13] => nBit_mux2:shift_load_high_mux.in1[13]
+parallel_in[14] => nBit_mux2:shift_load_high_mux.in1[14]
+parallel_in[15] => nBit_mux2:shift_load_high_mux.in1[15]
+parallel_in[16] => nBit_mux2:shift_load_high_mux.in1[16]
+parallel_in[17] => nBit_mux2:shift_load_high_mux.in1[17]
+parallel_in[18] => nBit_mux2:shift_load_high_mux.in1[18]
+parallel_in[19] => nBit_mux2:shift_load_high_mux.in1[19]
+parallel_in[20] => nBit_mux2:shift_load_high_mux.in1[20]
+parallel_in[21] => nBit_mux2:shift_load_high_mux.in1[21]
+parallel_in[22] => nBit_mux2:shift_load_high_mux.in1[22]
+parallel_in[23] => nBit_mux2:shift_load_high_mux.in1[23]
+parallel_in[24] => nBit_mux2:shift_load_high_mux.in1[24]
+parallel_in[25] => nBit_mux2:shift_load_high_mux.in1[25]
+parallel_in[26] => nBit_mux2:shift_load_high_mux.in1[26]
+parallel_in[27] => nBit_mux2:shift_load_high_mux.in1[27]
+parallel_in[28] => nBit_mux2:shift_load_high_mux.in1[28]
+parallel_in[29] => nBit_mux2:shift_load_high_mux.in1[29]
+parallel_in[30] => nBit_mux2:shift_load_high_mux.in1[30]
+parallel_in[31] => nBit_mux2:shift_load_high_mux.in1[31]
+parallel_in[32] => nBit_mux2:shift_load_high_mux.in1[32]
+parallel_in[33] => nBit_mux2:shift_load_high_mux.in1[33]
+parallel_in[34] => nBit_mux2:shift_load_high_mux.in1[34]
+parallel_in[35] => nBit_mux2:shift_load_high_mux_msb.in1[0]
+parallel_in[36] => nBit_mux2:shift_load_high_mux_msb.in1[1]
+parallel_in[37] => nBit_mux2:shift_load_high_mux_msb.in1[2]
+parallel_in[38] => nBit_mux2:shift_load_high_mux_msb.in1[3]
+parallel_in[39] => nBit_mux2:shift_load_high_mux_msb.in1[4]
+parallel_in[40] => nBit_mux2:shift_load_high_mux_msb.in1[5]
+parallel_in[41] => nBit_mux2:shift_load_high_mux_msb.in1[6]
+char_in[0] => nBit_mux2:shift_load_high_mux_msb.in0[0]
+char_in[1] => nBit_mux2:shift_load_high_mux_msb.in0[1]
+char_in[2] => nBit_mux2:shift_load_high_mux_msb.in0[2]
+char_in[3] => nBit_mux2:shift_load_high_mux_msb.in0[3]
+char_in[4] => nBit_mux2:shift_load_high_mux_msb.in0[4]
+char_in[5] => nBit_mux2:shift_load_high_mux_msb.in0[5]
+char_in[6] => nBit_mux2:shift_load_high_mux_msb.in0[6]
+global_reset => nBit_reg:ascii_reg0.clear[6]
+global_reset => nBit_reg:ascii_reg0.clear[5]
+global_reset => nBit_reg:ascii_reg0.clear[4]
+global_reset => nBit_reg:ascii_reg0.clear[3]
+global_reset => nBit_reg:ascii_reg0.clear[2]
+global_reset => nBit_reg:ascii_reg0.clear[1]
+global_reset => nBit_reg:ascii_reg0.clear[0]
+global_reset => nBit_reg:loop0:1:ascii_reg.clear[6]
+global_reset => nBit_reg:loop0:1:ascii_reg.clear[5]
+global_reset => nBit_reg:loop0:1:ascii_reg.clear[4]
+global_reset => nBit_reg:loop0:1:ascii_reg.clear[3]
+global_reset => nBit_reg:loop0:1:ascii_reg.clear[2]
+global_reset => nBit_reg:loop0:1:ascii_reg.clear[1]
+global_reset => nBit_reg:loop0:1:ascii_reg.clear[0]
+global_reset => nBit_reg:loop0:2:ascii_reg.clear[6]
+global_reset => nBit_reg:loop0:2:ascii_reg.clear[5]
+global_reset => nBit_reg:loop0:2:ascii_reg.clear[4]
+global_reset => nBit_reg:loop0:2:ascii_reg.clear[3]
+global_reset => nBit_reg:loop0:2:ascii_reg.clear[2]
+global_reset => nBit_reg:loop0:2:ascii_reg.clear[1]
+global_reset => nBit_reg:loop0:2:ascii_reg.clear[0]
+global_reset => nBit_reg:loop0:3:ascii_reg.clear[6]
+global_reset => nBit_reg:loop0:3:ascii_reg.clear[5]
+global_reset => nBit_reg:loop0:3:ascii_reg.clear[4]
+global_reset => nBit_reg:loop0:3:ascii_reg.clear[3]
+global_reset => nBit_reg:loop0:3:ascii_reg.clear[2]
+global_reset => nBit_reg:loop0:3:ascii_reg.clear[1]
+global_reset => nBit_reg:loop0:3:ascii_reg.clear[0]
+global_reset => nBit_reg:loop0:4:ascii_reg.clear[6]
+global_reset => nBit_reg:loop0:4:ascii_reg.clear[5]
+global_reset => nBit_reg:loop0:4:ascii_reg.clear[4]
+global_reset => nBit_reg:loop0:4:ascii_reg.clear[3]
+global_reset => nBit_reg:loop0:4:ascii_reg.clear[2]
+global_reset => nBit_reg:loop0:4:ascii_reg.clear[1]
+global_reset => nBit_reg:loop0:4:ascii_reg.clear[0]
+global_reset => nBit_reg:loop0:5:ascii_reg.clear[6]
+global_reset => nBit_reg:loop0:5:ascii_reg.clear[5]
+global_reset => nBit_reg:loop0:5:ascii_reg.clear[4]
+global_reset => nBit_reg:loop0:5:ascii_reg.clear[3]
+global_reset => nBit_reg:loop0:5:ascii_reg.clear[2]
+global_reset => nBit_reg:loop0:5:ascii_reg.clear[1]
+global_reset => nBit_reg:loop0:5:ascii_reg.clear[0]
+clk => nBit_reg:ascii_reg0.clk
+clk => nBit_reg:loop0:1:ascii_reg.clk
+clk => nBit_reg:loop0:2:ascii_reg.clk
+clk => nBit_reg:loop0:3:ascii_reg.clk
+clk => nBit_reg:loop0:4:ascii_reg.clk
+clk => nBit_reg:loop0:5:ascii_reg.clk
+en => nBit_reg:ascii_reg0.en
+en => nBit_reg:loop0:1:ascii_reg.en
+en => nBit_reg:loop0:2:ascii_reg.en
+en => nBit_reg:loop0:3:ascii_reg.en
+en => nBit_reg:loop0:4:ascii_reg.en
+en => nBit_reg:loop0:5:ascii_reg.en
+shift_load_high => nBit_mux2:shift_load_high_mux_msb.sel0
+shift_load_high => nBit_mux2:shift_load_high_mux.sel0
+parallel_out[0] <= nBit_reg:ascii_reg0.q[0]
+parallel_out[1] <= nBit_reg:ascii_reg0.q[1]
+parallel_out[2] <= nBit_reg:ascii_reg0.q[2]
+parallel_out[3] <= nBit_reg:ascii_reg0.q[3]
+parallel_out[4] <= nBit_reg:ascii_reg0.q[4]
+parallel_out[5] <= nBit_reg:ascii_reg0.q[5]
+parallel_out[6] <= nBit_reg:ascii_reg0.q[6]
+parallel_out[7] <= nBit_reg:loop0:1:ascii_reg.q[0]
+parallel_out[8] <= nBit_reg:loop0:1:ascii_reg.q[1]
+parallel_out[9] <= nBit_reg:loop0:1:ascii_reg.q[2]
+parallel_out[10] <= nBit_reg:loop0:1:ascii_reg.q[3]
+parallel_out[11] <= nBit_reg:loop0:1:ascii_reg.q[4]
+parallel_out[12] <= nBit_reg:loop0:1:ascii_reg.q[5]
+parallel_out[13] <= nBit_reg:loop0:1:ascii_reg.q[6]
+parallel_out[14] <= nBit_reg:loop0:2:ascii_reg.q[0]
+parallel_out[15] <= nBit_reg:loop0:2:ascii_reg.q[1]
+parallel_out[16] <= nBit_reg:loop0:2:ascii_reg.q[2]
+parallel_out[17] <= nBit_reg:loop0:2:ascii_reg.q[3]
+parallel_out[18] <= nBit_reg:loop0:2:ascii_reg.q[4]
+parallel_out[19] <= nBit_reg:loop0:2:ascii_reg.q[5]
+parallel_out[20] <= nBit_reg:loop0:2:ascii_reg.q[6]
+parallel_out[21] <= nBit_reg:loop0:3:ascii_reg.q[0]
+parallel_out[22] <= nBit_reg:loop0:3:ascii_reg.q[1]
+parallel_out[23] <= nBit_reg:loop0:3:ascii_reg.q[2]
+parallel_out[24] <= nBit_reg:loop0:3:ascii_reg.q[3]
+parallel_out[25] <= nBit_reg:loop0:3:ascii_reg.q[4]
+parallel_out[26] <= nBit_reg:loop0:3:ascii_reg.q[5]
+parallel_out[27] <= nBit_reg:loop0:3:ascii_reg.q[6]
+parallel_out[28] <= nBit_reg:loop0:4:ascii_reg.q[0]
+parallel_out[29] <= nBit_reg:loop0:4:ascii_reg.q[1]
+parallel_out[30] <= nBit_reg:loop0:4:ascii_reg.q[2]
+parallel_out[31] <= nBit_reg:loop0:4:ascii_reg.q[3]
+parallel_out[32] <= nBit_reg:loop0:4:ascii_reg.q[4]
+parallel_out[33] <= nBit_reg:loop0:4:ascii_reg.q[5]
+parallel_out[34] <= nBit_reg:loop0:4:ascii_reg.q[6]
+parallel_out[35] <= nBit_reg:loop0:5:ascii_reg.q[0]
+parallel_out[36] <= nBit_reg:loop0:5:ascii_reg.q[1]
+parallel_out[37] <= nBit_reg:loop0:5:ascii_reg.q[2]
+parallel_out[38] <= nBit_reg:loop0:5:ascii_reg.q[3]
+parallel_out[39] <= nBit_reg:loop0:5:ascii_reg.q[4]
+parallel_out[40] <= nBit_reg:loop0:5:ascii_reg.q[5]
+parallel_out[41] <= nBit_reg:loop0:5:ascii_reg.q[6]
+char_out[0] <= nBit_reg:ascii_reg0.q[0]
+char_out[1] <= nBit_reg:ascii_reg0.q[1]
+char_out[2] <= nBit_reg:ascii_reg0.q[2]
+char_out[3] <= nBit_reg:ascii_reg0.q[3]
+char_out[4] <= nBit_reg:ascii_reg0.q[4]
+char_out[5] <= nBit_reg:ascii_reg0.q[5]
+char_out[6] <= nBit_reg:ascii_reg0.q[6]
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_mux2:shift_load_high_mux_msb
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in1[4] => out0.IN0
+in1[5] => out0.IN0
+in1[6] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+in0[4] => out0.IN0
+in0[5] => out0.IN0
+in0[6] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[4] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[5] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[6] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_mux2:shift_load_high_mux
+in1[0] => out0.IN0
+in1[1] => out0.IN0
+in1[2] => out0.IN0
+in1[3] => out0.IN0
+in1[4] => out0.IN0
+in1[5] => out0.IN0
+in1[6] => out0.IN0
+in1[7] => out0.IN0
+in1[8] => out0.IN0
+in1[9] => out0.IN0
+in1[10] => out0.IN0
+in1[11] => out0.IN0
+in1[12] => out0.IN0
+in1[13] => out0.IN0
+in1[14] => out0.IN0
+in1[15] => out0.IN0
+in1[16] => out0.IN0
+in1[17] => out0.IN0
+in1[18] => out0.IN0
+in1[19] => out0.IN0
+in1[20] => out0.IN0
+in1[21] => out0.IN0
+in1[22] => out0.IN0
+in1[23] => out0.IN0
+in1[24] => out0.IN0
+in1[25] => out0.IN0
+in1[26] => out0.IN0
+in1[27] => out0.IN0
+in1[28] => out0.IN0
+in1[29] => out0.IN0
+in1[30] => out0.IN0
+in1[31] => out0.IN0
+in1[32] => out0.IN0
+in1[33] => out0.IN0
+in1[34] => out0.IN0
+in0[0] => out0.IN0
+in0[1] => out0.IN0
+in0[2] => out0.IN0
+in0[3] => out0.IN0
+in0[4] => out0.IN0
+in0[5] => out0.IN0
+in0[6] => out0.IN0
+in0[7] => out0.IN0
+in0[8] => out0.IN0
+in0[9] => out0.IN0
+in0[10] => out0.IN0
+in0[11] => out0.IN0
+in0[12] => out0.IN0
+in0[13] => out0.IN0
+in0[14] => out0.IN0
+in0[15] => out0.IN0
+in0[16] => out0.IN0
+in0[17] => out0.IN0
+in0[18] => out0.IN0
+in0[19] => out0.IN0
+in0[20] => out0.IN0
+in0[21] => out0.IN0
+in0[22] => out0.IN0
+in0[23] => out0.IN0
+in0[24] => out0.IN0
+in0[25] => out0.IN0
+in0[26] => out0.IN0
+in0[27] => out0.IN0
+in0[28] => out0.IN0
+in0[29] => out0.IN0
+in0[30] => out0.IN0
+in0[31] => out0.IN0
+in0[32] => out0.IN0
+in0[33] => out0.IN0
+in0[34] => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0[0] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[1] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[2] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[3] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[4] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[5] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[6] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[7] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[8] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[9] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[10] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[11] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[12] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[13] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[14] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[15] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[16] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[17] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[18] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[19] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[20] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[21] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[22] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[23] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[24] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[25] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[26] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[27] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[28] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[29] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[30] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[31] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[32] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[33] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+out0[34] <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+parallel_in[6] => d_flipflop:loop0:6:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+preset[6] => d_flipflop:loop0:6:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clear[6] => d_flipflop:loop0:6:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+clk => d_flipflop:loop0:6:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+en => d_flipflop:loop0:6:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q[6] <= d_flipflop:loop0:6:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+q_not[6] <= d_flipflop:loop0:6:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:6:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:ascii_reg0|d_flipflop:\loop0:6:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+parallel_in[6] => d_flipflop:loop0:6:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+preset[6] => d_flipflop:loop0:6:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clear[6] => d_flipflop:loop0:6:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+clk => d_flipflop:loop0:6:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+en => d_flipflop:loop0:6:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q[6] <= d_flipflop:loop0:6:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+q_not[6] <= d_flipflop:loop0:6:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:6:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:1:ascii_reg|d_flipflop:\loop0:6:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+parallel_in[6] => d_flipflop:loop0:6:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+preset[6] => d_flipflop:loop0:6:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clear[6] => d_flipflop:loop0:6:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+clk => d_flipflop:loop0:6:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+en => d_flipflop:loop0:6:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q[6] <= d_flipflop:loop0:6:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+q_not[6] <= d_flipflop:loop0:6:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:6:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:2:ascii_reg|d_flipflop:\loop0:6:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+parallel_in[6] => d_flipflop:loop0:6:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+preset[6] => d_flipflop:loop0:6:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clear[6] => d_flipflop:loop0:6:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+clk => d_flipflop:loop0:6:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+en => d_flipflop:loop0:6:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q[6] <= d_flipflop:loop0:6:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+q_not[6] <= d_flipflop:loop0:6:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:6:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:3:ascii_reg|d_flipflop:\loop0:6:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+parallel_in[6] => d_flipflop:loop0:6:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+preset[6] => d_flipflop:loop0:6:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clear[6] => d_flipflop:loop0:6:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+clk => d_flipflop:loop0:6:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+en => d_flipflop:loop0:6:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q[6] <= d_flipflop:loop0:6:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+q_not[6] <= d_flipflop:loop0:6:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:6:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:4:ascii_reg|d_flipflop:\loop0:6:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+parallel_in[4] => d_flipflop:loop0:4:dff.d
+parallel_in[5] => d_flipflop:loop0:5:dff.d
+parallel_in[6] => d_flipflop:loop0:6:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+preset[4] => d_flipflop:loop0:4:dff.preset
+preset[5] => d_flipflop:loop0:5:dff.preset
+preset[6] => d_flipflop:loop0:6:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clear[4] => d_flipflop:loop0:4:dff.clear
+clear[5] => d_flipflop:loop0:5:dff.clear
+clear[6] => d_flipflop:loop0:6:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+clk => d_flipflop:loop0:4:dff.clk
+clk => d_flipflop:loop0:5:dff.clk
+clk => d_flipflop:loop0:6:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+en => d_flipflop:loop0:4:dff.en
+en => d_flipflop:loop0:5:dff.en
+en => d_flipflop:loop0:6:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q[4] <= d_flipflop:loop0:4:dff.q
+q[5] <= d_flipflop:loop0:5:dff.q
+q[6] <= d_flipflop:loop0:6:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+q_not[4] <= d_flipflop:loop0:4:dff.q_not
+q_not[5] <= d_flipflop:loop0:5:dff.q_not
+q_not[6] <= d_flipflop:loop0:6:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:4:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:4:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:5:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:5:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:6:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|tlc_tx_message_buffer:message_buffer|nChar_acsii7_shift_reg:ascii_reg|nBit_reg:\loop0:5:ascii_reg|d_flipflop:\loop0:6:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter
+bus0[0] => nBit_PIPO_reg:tdr_reg.parallel_in[0]
+bus0[1] => nBit_PIPO_reg:tdr_reg.parallel_in[1]
+bus0[2] => nBit_PIPO_reg:tdr_reg.parallel_in[2]
+bus0[3] => nBit_PIPO_reg:tdr_reg.parallel_in[3]
+bus0[4] => nBit_PIPO_reg:tdr_reg.parallel_in[4]
+bus0[5] => nBit_PIPO_reg:tdr_reg.parallel_in[5]
+bus0[6] => nBit_PIPO_reg:tdr_reg.parallel_in[6]
+bus0[7] => ~NO_FANOUT~
+bus_ready => tdr_to_full.IN1
+clk => ~NO_FANOUT~
+clk_baud => t_flipflop:tdr_empty_temp_ff.clk
+clk_baud => nBit_PIPO_reg:tdr_reg.clk
+clk_baud => t_flipflop:tx_state.clk
+clk_baud => nBit_PISO_reg:tsr_reg.clk
+clk_baud => nBit_counter_sync_clear:shift_counter.clk
+global_reset => t_flipflop:tdr_empty_temp_ff.preset
+global_reset => nBit_PIPO_reg:tdr_reg.preset
+global_reset => t_flipflop:tx_state.clear
+global_reset => nBit_PISO_reg:tsr_reg.preset
+global_reset => nBit_counter_sync_clear:shift_counter.global_reset
+tx <= nBit_PISO_reg:tsr_reg.q[0]
+i_cnt[0] <= nBit_counter_sync_clear:shift_counter.total[0]
+i_cnt[1] <= nBit_counter_sync_clear:shift_counter.total[1]
+i_cnt[2] <= nBit_counter_sync_clear:shift_counter.total[2]
+i_cnt[3] <= nBit_counter_sync_clear:shift_counter.total[3]
+tdr[0] <= nBit_PIPO_reg:tdr_reg.q[0]
+tdr[1] <= nBit_PIPO_reg:tdr_reg.q[1]
+tdr[2] <= nBit_PIPO_reg:tdr_reg.q[2]
+tdr[3] <= nBit_PIPO_reg:tdr_reg.q[3]
+tdr[4] <= nBit_PIPO_reg:tdr_reg.q[4]
+tdr[5] <= nBit_PIPO_reg:tdr_reg.q[5]
+tdr[6] <= nBit_PIPO_reg:tdr_reg.q[6]
+tsr[0] <= nBit_PISO_reg:tsr_reg.q[0]
+tsr[1] <= nBit_PISO_reg:tsr_reg.q[1]
+tsr[2] <= nBit_PISO_reg:tsr_reg.q[2]
+tsr[3] <= nBit_PISO_reg:tsr_reg.q[3]
+tsr[4] <= nBit_PISO_reg:tsr_reg.q[4]
+tsr[5] <= nBit_PISO_reg:tsr_reg.q[5]
+tsr[6] <= nBit_PISO_reg:tsr_reg.q[6]
+tsr[7] <= nBit_PISO_reg:tsr_reg.q[7]
+tsr[8] <= nBit_PISO_reg:tsr_reg.q[8]
+tsr[9] <= nBit_PISO_reg:tsr_reg.q[9]
+tdr_empty <= t_flipflop:tdr_empty_temp_ff.q
+state <= t_flipflop:tx_state.q
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|t_flipflop:tdr_empty_temp_ff
+t => jk_flipflop:jk.j
+t => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|t_flipflop:tdr_empty_temp_ff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg
+parallel_in[0] => d_flipflop:loop0:0:dffI.d
+parallel_in[1] => d_flipflop:loop0:1:dffI.d
+parallel_in[2] => d_flipflop:loop0:2:dffI.d
+parallel_in[3] => d_flipflop:loop0:3:dffI.d
+parallel_in[4] => d_flipflop:loop0:4:dffI.d
+parallel_in[5] => d_flipflop:loop0:5:dffI.d
+parallel_in[6] => d_flipflop:loop0:6:dffI.d
+clk => d_flipflop:loop0:0:dffI.clk
+clk => d_flipflop:loop0:1:dffI.clk
+clk => d_flipflop:loop0:2:dffI.clk
+clk => d_flipflop:loop0:3:dffI.clk
+clk => d_flipflop:loop0:4:dffI.clk
+clk => d_flipflop:loop0:5:dffI.clk
+clk => d_flipflop:loop0:6:dffI.clk
+en => d_flipflop:loop0:0:dffI.en
+en => d_flipflop:loop0:1:dffI.en
+en => d_flipflop:loop0:2:dffI.en
+en => d_flipflop:loop0:3:dffI.en
+en => d_flipflop:loop0:4:dffI.en
+en => d_flipflop:loop0:5:dffI.en
+en => d_flipflop:loop0:6:dffI.en
+preset => d_flipflop:loop0:0:dffI.preset
+preset => d_flipflop:loop0:1:dffI.preset
+preset => d_flipflop:loop0:2:dffI.preset
+preset => d_flipflop:loop0:3:dffI.preset
+preset => d_flipflop:loop0:4:dffI.preset
+preset => d_flipflop:loop0:5:dffI.preset
+preset => d_flipflop:loop0:6:dffI.preset
+clear => d_flipflop:loop0:0:dffI.clear
+clear => d_flipflop:loop0:1:dffI.clear
+clear => d_flipflop:loop0:2:dffI.clear
+clear => d_flipflop:loop0:3:dffI.clear
+clear => d_flipflop:loop0:4:dffI.clear
+clear => d_flipflop:loop0:5:dffI.clear
+clear => d_flipflop:loop0:6:dffI.clear
+q[0] <= d_flipflop:loop0:0:dffI.q
+q[1] <= d_flipflop:loop0:1:dffI.q
+q[2] <= d_flipflop:loop0:2:dffI.q
+q[3] <= d_flipflop:loop0:3:dffI.q
+q[4] <= d_flipflop:loop0:4:dffI.q
+q[5] <= d_flipflop:loop0:5:dffI.q
+q[6] <= d_flipflop:loop0:6:dffI.q
+q_not[0] <= d_flipflop:loop0:0:dffI.q_not
+q_not[1] <= d_flipflop:loop0:1:dffI.q_not
+q_not[2] <= d_flipflop:loop0:2:dffI.q_not
+q_not[3] <= d_flipflop:loop0:3:dffI.q_not
+q_not[4] <= d_flipflop:loop0:4:dffI.q_not
+q_not[5] <= d_flipflop:loop0:5:dffI.q_not
+q_not[6] <= d_flipflop:loop0:6:dffI.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:0:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:0:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:1:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:1:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:2:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:2:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:3:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:3:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:4:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:4:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:5:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:5:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:6:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PIPO_reg:tdr_reg|d_flipflop:\loop0:6:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|t_flipflop:tx_state
+t => jk_flipflop:jk.j
+t => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|t_flipflop:tx_state|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|parity_8Bit:p
+in0[0] => parity_odd.IN0
+in0[1] => parity_odd.IN1
+in0[2] => parity_odd.IN0
+in0[3] => parity_odd.IN1
+in0[4] => parity_odd.IN0
+in0[5] => parity_odd.IN1
+in0[6] => parity_odd.IN0
+in0[7] => parity_odd.IN1
+even_odd_low => parity.IN1
+parity <= parity.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg
+parallel_in[0] => mux2:loop0:0:mux_inI.in1
+parallel_in[1] => mux2:loop0:1:mux_inI.in1
+parallel_in[2] => mux2:loop0:2:mux_inI.in1
+parallel_in[3] => mux2:loop0:3:mux_inI.in1
+parallel_in[4] => mux2:loop0:4:mux_inI.in1
+parallel_in[5] => mux2:loop0:5:mux_inI.in1
+parallel_in[6] => mux2:loop0:6:mux_inI.in1
+parallel_in[7] => mux2:loop0:7:mux_inI.in1
+parallel_in[8] => mux2:loop0:8:mux_inI.in1
+parallel_in[9] => mux2:mux_in0.in1
+serial_in => mux2:mux_in0.in0
+shift_load => mux2:mux_in0.sel0
+shift_load => mux2:loop0:0:mux_inI.sel0
+shift_load => mux2:loop0:1:mux_inI.sel0
+shift_load => mux2:loop0:2:mux_inI.sel0
+shift_load => mux2:loop0:3:mux_inI.sel0
+shift_load => mux2:loop0:4:mux_inI.sel0
+shift_load => mux2:loop0:5:mux_inI.sel0
+shift_load => mux2:loop0:6:mux_inI.sel0
+shift_load => mux2:loop0:7:mux_inI.sel0
+shift_load => mux2:loop0:8:mux_inI.sel0
+clk => d_flipflop:dff0.clk
+clk => d_flipflop:loop0:0:dffI.clk
+clk => d_flipflop:loop0:1:dffI.clk
+clk => d_flipflop:loop0:2:dffI.clk
+clk => d_flipflop:loop0:3:dffI.clk
+clk => d_flipflop:loop0:4:dffI.clk
+clk => d_flipflop:loop0:5:dffI.clk
+clk => d_flipflop:loop0:6:dffI.clk
+clk => d_flipflop:loop0:7:dffI.clk
+clk => d_flipflop:loop0:8:dffI.clk
+en => d_flipflop:dff0.en
+en => d_flipflop:loop0:0:dffI.en
+en => d_flipflop:loop0:1:dffI.en
+en => d_flipflop:loop0:2:dffI.en
+en => d_flipflop:loop0:3:dffI.en
+en => d_flipflop:loop0:4:dffI.en
+en => d_flipflop:loop0:5:dffI.en
+en => d_flipflop:loop0:6:dffI.en
+en => d_flipflop:loop0:7:dffI.en
+en => d_flipflop:loop0:8:dffI.en
+preset => d_flipflop:dff0.preset
+preset => d_flipflop:loop0:0:dffI.preset
+preset => d_flipflop:loop0:1:dffI.preset
+preset => d_flipflop:loop0:2:dffI.preset
+preset => d_flipflop:loop0:3:dffI.preset
+preset => d_flipflop:loop0:4:dffI.preset
+preset => d_flipflop:loop0:5:dffI.preset
+preset => d_flipflop:loop0:6:dffI.preset
+preset => d_flipflop:loop0:7:dffI.preset
+preset => d_flipflop:loop0:8:dffI.preset
+clear => d_flipflop:dff0.clear
+clear => d_flipflop:loop0:0:dffI.clear
+clear => d_flipflop:loop0:1:dffI.clear
+clear => d_flipflop:loop0:2:dffI.clear
+clear => d_flipflop:loop0:3:dffI.clear
+clear => d_flipflop:loop0:4:dffI.clear
+clear => d_flipflop:loop0:5:dffI.clear
+clear => d_flipflop:loop0:6:dffI.clear
+clear => d_flipflop:loop0:7:dffI.clear
+clear => d_flipflop:loop0:8:dffI.clear
+q[0] <= d_flipflop:loop0:0:dffI.q
+q[1] <= d_flipflop:loop0:1:dffI.q
+q[2] <= d_flipflop:loop0:2:dffI.q
+q[3] <= d_flipflop:loop0:3:dffI.q
+q[4] <= d_flipflop:loop0:4:dffI.q
+q[5] <= d_flipflop:loop0:5:dffI.q
+q[6] <= d_flipflop:loop0:6:dffI.q
+q[7] <= d_flipflop:loop0:7:dffI.q
+q[8] <= d_flipflop:loop0:8:dffI.q
+q[9] <= d_flipflop:dff0.q
+q_not[0] <= d_flipflop:loop0:0:dffI.q_not
+q_not[1] <= d_flipflop:loop0:1:dffI.q_not
+q_not[2] <= d_flipflop:loop0:2:dffI.q_not
+q_not[3] <= d_flipflop:loop0:3:dffI.q_not
+q_not[4] <= d_flipflop:loop0:4:dffI.q_not
+q_not[5] <= d_flipflop:loop0:5:dffI.q_not
+q_not[6] <= d_flipflop:loop0:6:dffI.q_not
+q_not[7] <= d_flipflop:loop0:7:dffI.q_not
+q_not[8] <= d_flipflop:loop0:8:dffI.q_not
+q_not[9] <= d_flipflop:dff0.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:mux_in0
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:dff0
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:dff0|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:0:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:0:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:0:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:1:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:1:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:1:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:2:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:2:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:2:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:3:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:3:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:3:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:4:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:4:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:4:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:5:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:5:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:5:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:6:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:6:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:6:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:7:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:7:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:7:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|mux2:\loop0:8:mux_inI
+in0 => out0.IN0
+in1 => out0.IN0
+sel0 => out0.IN1
+sel0 => out0.IN1
+out0 <= out0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:8:dffI
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_PISO_reg:tsr_reg|d_flipflop:\loop0:8:dffI|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter
+clk => nBit_reg:counter_reg.clk
+en => en_temp.IN1
+global_reset => nBit_reg:counter_reg.clear[3]
+global_reset => nBit_reg:counter_reg.clear[2]
+global_reset => nBit_reg:counter_reg.clear[1]
+global_reset => nBit_reg:counter_reg.clear[0]
+clear_sync => en_temp.IN1
+clear_sync => parallel_in[0].IN1
+clear_sync => parallel_in[1].IN1
+clear_sync => parallel_in[2].IN1
+clear_sync => parallel_in[3].IN1
+target[0] => Equal0.IN3
+target[1] => Equal0.IN2
+target[2] => Equal0.IN1
+target[3] => Equal0.IN0
+at_target <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+total[0] <= nBit_reg:counter_reg.q[0]
+total[1] <= nBit_reg:counter_reg.q[1]
+total[2] <= nBit_reg:counter_reg.q[2]
+total[3] <= nBit_reg:counter_reg.q[3]
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|andN:\loop0:1:andN_i
+inN[0] => anded.DATAIN
+anded <= inN[0].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|andN:\loop0:2:andN_i
+inN[0] => Equal0.IN1
+inN[1] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|andN:\loop0:3:andN_i
+inN[0] => Equal0.IN2
+inN[1] => Equal0.IN1
+inN[2] => Equal0.IN0
+anded <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg
+parallel_in[0] => d_flipflop:loop0:0:dff.d
+parallel_in[1] => d_flipflop:loop0:1:dff.d
+parallel_in[2] => d_flipflop:loop0:2:dff.d
+parallel_in[3] => d_flipflop:loop0:3:dff.d
+preset[0] => d_flipflop:loop0:0:dff.preset
+preset[1] => d_flipflop:loop0:1:dff.preset
+preset[2] => d_flipflop:loop0:2:dff.preset
+preset[3] => d_flipflop:loop0:3:dff.preset
+clear[0] => d_flipflop:loop0:0:dff.clear
+clear[1] => d_flipflop:loop0:1:dff.clear
+clear[2] => d_flipflop:loop0:2:dff.clear
+clear[3] => d_flipflop:loop0:3:dff.clear
+clk => d_flipflop:loop0:0:dff.clk
+clk => d_flipflop:loop0:1:dff.clk
+clk => d_flipflop:loop0:2:dff.clk
+clk => d_flipflop:loop0:3:dff.clk
+en => d_flipflop:loop0:0:dff.en
+en => d_flipflop:loop0:1:dff.en
+en => d_flipflop:loop0:2:dff.en
+en => d_flipflop:loop0:3:dff.en
+q[0] <= d_flipflop:loop0:0:dff.q
+q[1] <= d_flipflop:loop0:1:dff.q
+q[2] <= d_flipflop:loop0:2:dff.q
+q[3] <= d_flipflop:loop0:3:dff.q
+q_not[0] <= d_flipflop:loop0:0:dff.q_not
+q_not[1] <= d_flipflop:loop0:1:dff.q_not
+q_not[2] <= d_flipflop:loop0:2:dff.q_not
+q_not[3] <= d_flipflop:loop0:3:dff.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg|d_flipflop:\loop0:1:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg|d_flipflop:\loop0:2:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff
+d => jk_flipflop:jk.j
+d => jk_flipflop:jk.k
+clk => jk_flipflop:jk.clk
+en => jk_flipflop:jk.en
+preset => jk_flipflop:jk.preset
+clear => jk_flipflop:jk.clear
+q <= jk_flipflop:jk.q
+q_not <= jk_flipflop:jk.q_not
+
+
+|uartProject|traffic_light_tx:inst|uart_tx_fsm:message_transmitter|nBit_counter_sync_clear:shift_counter|nBit_reg:counter_reg|d_flipflop:\loop0:3:dff|jk_flipflop:jk
+j => process_0.IN0
+j => process_0.IN0
+j => process_0.IN0
+k => process_0.IN1
+k => process_0.IN1
+k => process_0.IN1
+clk => t_q.CLK
+en => t_q.ENA
+preset => t_q.IN0
+clear => t_q.ACLR
+clear => t_q.IN1
+q <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+q_not <= t_q.DB_MAX_OUTPUT_PORT_TYPE
+
+

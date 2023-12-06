@@ -1,0 +1,572 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "12/03/2023 10:33:37"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    rxTest
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module rxTest_vlg_sample_tst(
+	clk,
+	clk_buad_eighth,
+	global_reset,
+	rx,
+	sampler_tx
+);
+input  clk;
+input  clk_buad_eighth;
+input  global_reset;
+input  rx;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(clk or clk_buad_eighth or global_reset or rx)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module rxTest_vlg_check_tst (
+	framing_error,
+	parity_error,
+	rdr,
+	rdr_ready,
+	state_counter_total_OUT,
+	state_is_idle_OUT,
+	state_is_read_OUT,
+	state_is_start_OUT,
+	sampler_rx
+);
+input  framing_error;
+input  parity_error;
+input [6:0] rdr;
+input  rdr_ready;
+input [1:0] state_counter_total_OUT;
+input  state_is_idle_OUT;
+input  state_is_read_OUT;
+input  state_is_start_OUT;
+input sampler_rx;
+
+reg  framing_error_expected;
+reg  parity_error_expected;
+reg [6:0] rdr_expected;
+reg  rdr_ready_expected;
+reg [1:0] state_counter_total_OUT_expected;
+reg  state_is_idle_OUT_expected;
+reg  state_is_read_OUT_expected;
+reg  state_is_start_OUT_expected;
+
+reg  framing_error_prev;
+reg  parity_error_prev;
+reg [6:0] rdr_prev;
+reg  rdr_ready_prev;
+reg [1:0] state_counter_total_OUT_prev;
+reg  state_is_idle_OUT_prev;
+reg  state_is_read_OUT_prev;
+reg  state_is_start_OUT_prev;
+
+reg  framing_error_expected_prev;
+reg  parity_error_expected_prev;
+reg [6:0] rdr_expected_prev;
+reg  rdr_ready_expected_prev;
+reg [1:0] state_counter_total_OUT_expected_prev;
+reg  state_is_idle_OUT_expected_prev;
+reg  state_is_read_OUT_expected_prev;
+reg  state_is_start_OUT_expected_prev;
+
+reg  last_framing_error_exp;
+reg  last_parity_error_exp;
+reg [6:0] last_rdr_exp;
+reg  last_rdr_ready_exp;
+reg [1:0] last_state_counter_total_OUT_exp;
+reg  last_state_is_idle_OUT_exp;
+reg  last_state_is_read_OUT_exp;
+reg  last_state_is_start_OUT_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:8] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 8'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	framing_error_prev = framing_error;
+	parity_error_prev = parity_error;
+	rdr_prev = rdr;
+	rdr_ready_prev = rdr_ready;
+	state_counter_total_OUT_prev = state_counter_total_OUT;
+	state_is_idle_OUT_prev = state_is_idle_OUT;
+	state_is_read_OUT_prev = state_is_read_OUT;
+	state_is_start_OUT_prev = state_is_start_OUT;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	framing_error_expected_prev = framing_error_expected;
+	parity_error_expected_prev = parity_error_expected;
+	rdr_expected_prev = rdr_expected;
+	rdr_ready_expected_prev = rdr_ready_expected;
+	state_counter_total_OUT_expected_prev = state_counter_total_OUT_expected;
+	state_is_idle_OUT_expected_prev = state_is_idle_OUT_expected;
+	state_is_read_OUT_expected_prev = state_is_read_OUT_expected;
+	state_is_start_OUT_expected_prev = state_is_start_OUT_expected;
+end
+
+
+// expected rdr[ 6 ]
+initial
+begin
+	rdr_expected[6] = 1'bX;
+end 
+// expected rdr[ 5 ]
+initial
+begin
+	rdr_expected[5] = 1'bX;
+end 
+// expected rdr[ 4 ]
+initial
+begin
+	rdr_expected[4] = 1'bX;
+end 
+// expected rdr[ 3 ]
+initial
+begin
+	rdr_expected[3] = 1'bX;
+end 
+// expected rdr[ 2 ]
+initial
+begin
+	rdr_expected[2] = 1'bX;
+end 
+// expected rdr[ 1 ]
+initial
+begin
+	rdr_expected[1] = 1'bX;
+end 
+// expected rdr[ 0 ]
+initial
+begin
+	rdr_expected[0] = 1'bX;
+end 
+
+// expected framing_error
+initial
+begin
+	framing_error_expected = 1'bX;
+end 
+
+// expected parity_error
+initial
+begin
+	parity_error_expected = 1'bX;
+end 
+
+// expected rdr_ready
+initial
+begin
+	rdr_ready_expected = 1'bX;
+end 
+// expected state_counter_total_OUT[ 1 ]
+initial
+begin
+	state_counter_total_OUT_expected[1] = 1'bX;
+end 
+// expected state_counter_total_OUT[ 0 ]
+initial
+begin
+	state_counter_total_OUT_expected[0] = 1'bX;
+end 
+
+// expected state_is_idle_OUT
+initial
+begin
+	state_is_idle_OUT_expected = 1'bX;
+end 
+
+// expected state_is_read_OUT
+initial
+begin
+	state_is_read_OUT_expected = 1'bX;
+end 
+
+// expected state_is_start_OUT
+initial
+begin
+	state_is_start_OUT_expected = 1'bX;
+end 
+// generate trigger
+always @(framing_error_expected or framing_error or parity_error_expected or parity_error or rdr_expected or rdr or rdr_ready_expected or rdr_ready or state_counter_total_OUT_expected or state_counter_total_OUT or state_is_idle_OUT_expected or state_is_idle_OUT or state_is_read_OUT_expected or state_is_read_OUT or state_is_start_OUT_expected or state_is_start_OUT)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected framing_error = %b | expected parity_error = %b | expected rdr = %b | expected rdr_ready = %b | expected state_counter_total_OUT = %b | expected state_is_idle_OUT = %b | expected state_is_read_OUT = %b | expected state_is_start_OUT = %b | ",framing_error_expected_prev,parity_error_expected_prev,rdr_expected_prev,rdr_ready_expected_prev,state_counter_total_OUT_expected_prev,state_is_idle_OUT_expected_prev,state_is_read_OUT_expected_prev,state_is_start_OUT_expected_prev);
+	$display("| real framing_error = %b | real parity_error = %b | real rdr = %b | real rdr_ready = %b | real state_counter_total_OUT = %b | real state_is_idle_OUT = %b | real state_is_read_OUT = %b | real state_is_start_OUT = %b | ",framing_error_prev,parity_error_prev,rdr_prev,rdr_ready_prev,state_counter_total_OUT_prev,state_is_idle_OUT_prev,state_is_read_OUT_prev,state_is_start_OUT_prev);
+`endif
+	if (
+		( framing_error_expected_prev !== 1'bx ) && ( framing_error_prev !== framing_error_expected_prev )
+		&& ((framing_error_expected_prev !== last_framing_error_exp) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port framing_error :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", framing_error_expected_prev);
+		$display ("     Real value = %b", framing_error_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_framing_error_exp = framing_error_expected_prev;
+	end
+	if (
+		( parity_error_expected_prev !== 1'bx ) && ( parity_error_prev !== parity_error_expected_prev )
+		&& ((parity_error_expected_prev !== last_parity_error_exp) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port parity_error :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", parity_error_expected_prev);
+		$display ("     Real value = %b", parity_error_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_parity_error_exp = parity_error_expected_prev;
+	end
+	if (
+		( rdr_expected_prev[0] !== 1'bx ) && ( rdr_prev[0] !== rdr_expected_prev[0] )
+		&& ((rdr_expected_prev[0] !== last_rdr_exp[0]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port rdr[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", rdr_expected_prev);
+		$display ("     Real value = %b", rdr_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_rdr_exp[0] = rdr_expected_prev[0];
+	end
+	if (
+		( rdr_expected_prev[1] !== 1'bx ) && ( rdr_prev[1] !== rdr_expected_prev[1] )
+		&& ((rdr_expected_prev[1] !== last_rdr_exp[1]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port rdr[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", rdr_expected_prev);
+		$display ("     Real value = %b", rdr_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_rdr_exp[1] = rdr_expected_prev[1];
+	end
+	if (
+		( rdr_expected_prev[2] !== 1'bx ) && ( rdr_prev[2] !== rdr_expected_prev[2] )
+		&& ((rdr_expected_prev[2] !== last_rdr_exp[2]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port rdr[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", rdr_expected_prev);
+		$display ("     Real value = %b", rdr_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_rdr_exp[2] = rdr_expected_prev[2];
+	end
+	if (
+		( rdr_expected_prev[3] !== 1'bx ) && ( rdr_prev[3] !== rdr_expected_prev[3] )
+		&& ((rdr_expected_prev[3] !== last_rdr_exp[3]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port rdr[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", rdr_expected_prev);
+		$display ("     Real value = %b", rdr_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_rdr_exp[3] = rdr_expected_prev[3];
+	end
+	if (
+		( rdr_expected_prev[4] !== 1'bx ) && ( rdr_prev[4] !== rdr_expected_prev[4] )
+		&& ((rdr_expected_prev[4] !== last_rdr_exp[4]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port rdr[4] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", rdr_expected_prev);
+		$display ("     Real value = %b", rdr_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_rdr_exp[4] = rdr_expected_prev[4];
+	end
+	if (
+		( rdr_expected_prev[5] !== 1'bx ) && ( rdr_prev[5] !== rdr_expected_prev[5] )
+		&& ((rdr_expected_prev[5] !== last_rdr_exp[5]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port rdr[5] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", rdr_expected_prev);
+		$display ("     Real value = %b", rdr_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_rdr_exp[5] = rdr_expected_prev[5];
+	end
+	if (
+		( rdr_expected_prev[6] !== 1'bx ) && ( rdr_prev[6] !== rdr_expected_prev[6] )
+		&& ((rdr_expected_prev[6] !== last_rdr_exp[6]) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port rdr[6] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", rdr_expected_prev);
+		$display ("     Real value = %b", rdr_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_rdr_exp[6] = rdr_expected_prev[6];
+	end
+	if (
+		( rdr_ready_expected_prev !== 1'bx ) && ( rdr_ready_prev !== rdr_ready_expected_prev )
+		&& ((rdr_ready_expected_prev !== last_rdr_ready_exp) ||
+			on_first_change[4])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port rdr_ready :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", rdr_ready_expected_prev);
+		$display ("     Real value = %b", rdr_ready_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[4] = 1'b0;
+		last_rdr_ready_exp = rdr_ready_expected_prev;
+	end
+	if (
+		( state_counter_total_OUT_expected_prev[0] !== 1'bx ) && ( state_counter_total_OUT_prev[0] !== state_counter_total_OUT_expected_prev[0] )
+		&& ((state_counter_total_OUT_expected_prev[0] !== last_state_counter_total_OUT_exp[0]) ||
+			on_first_change[5])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port state_counter_total_OUT[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", state_counter_total_OUT_expected_prev);
+		$display ("     Real value = %b", state_counter_total_OUT_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[5] = 1'b0;
+		last_state_counter_total_OUT_exp[0] = state_counter_total_OUT_expected_prev[0];
+	end
+	if (
+		( state_counter_total_OUT_expected_prev[1] !== 1'bx ) && ( state_counter_total_OUT_prev[1] !== state_counter_total_OUT_expected_prev[1] )
+		&& ((state_counter_total_OUT_expected_prev[1] !== last_state_counter_total_OUT_exp[1]) ||
+			on_first_change[5])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port state_counter_total_OUT[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", state_counter_total_OUT_expected_prev);
+		$display ("     Real value = %b", state_counter_total_OUT_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[5] = 1'b0;
+		last_state_counter_total_OUT_exp[1] = state_counter_total_OUT_expected_prev[1];
+	end
+	if (
+		( state_is_idle_OUT_expected_prev !== 1'bx ) && ( state_is_idle_OUT_prev !== state_is_idle_OUT_expected_prev )
+		&& ((state_is_idle_OUT_expected_prev !== last_state_is_idle_OUT_exp) ||
+			on_first_change[6])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port state_is_idle_OUT :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", state_is_idle_OUT_expected_prev);
+		$display ("     Real value = %b", state_is_idle_OUT_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[6] = 1'b0;
+		last_state_is_idle_OUT_exp = state_is_idle_OUT_expected_prev;
+	end
+	if (
+		( state_is_read_OUT_expected_prev !== 1'bx ) && ( state_is_read_OUT_prev !== state_is_read_OUT_expected_prev )
+		&& ((state_is_read_OUT_expected_prev !== last_state_is_read_OUT_exp) ||
+			on_first_change[7])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port state_is_read_OUT :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", state_is_read_OUT_expected_prev);
+		$display ("     Real value = %b", state_is_read_OUT_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[7] = 1'b0;
+		last_state_is_read_OUT_exp = state_is_read_OUT_expected_prev;
+	end
+	if (
+		( state_is_start_OUT_expected_prev !== 1'bx ) && ( state_is_start_OUT_prev !== state_is_start_OUT_expected_prev )
+		&& ((state_is_start_OUT_expected_prev !== last_state_is_start_OUT_exp) ||
+			on_first_change[8])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port state_is_start_OUT :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", state_is_start_OUT_expected_prev);
+		$display ("     Real value = %b", state_is_start_OUT_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[8] = 1'b0;
+		last_state_is_start_OUT_exp = state_is_start_OUT_expected_prev;
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#1000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module rxTest_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg clk;
+reg clk_buad_eighth;
+reg global_reset;
+reg rx;
+// wires                                               
+wire framing_error;
+wire parity_error;
+wire [6:0] rdr;
+wire rdr_ready;
+wire [1:0] state_counter_total_OUT;
+wire state_is_idle_OUT;
+wire state_is_read_OUT;
+wire state_is_start_OUT;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+rxTest i1 (
+// port map - connection between master ports and signals/registers   
+	.clk(clk),
+	.clk_buad_eighth(clk_buad_eighth),
+	.framing_error(framing_error),
+	.global_reset(global_reset),
+	.parity_error(parity_error),
+	.rdr(rdr),
+	.rdr_ready(rdr_ready),
+	.rx(rx),
+	.state_counter_total_OUT(state_counter_total_OUT),
+	.state_is_idle_OUT(state_is_idle_OUT),
+	.state_is_read_OUT(state_is_read_OUT),
+	.state_is_start_OUT(state_is_start_OUT)
+);
+
+// global_reset
+initial
+begin
+	global_reset = 1'b1;
+	global_reset = #10000 1'b0;
+end 
+
+// clk_buad_eighth
+initial
+begin
+	clk_buad_eighth = 1'b1;
+	# 1250;
+	repeat(399)
+	begin
+		clk_buad_eighth = 1'b0;
+		clk_buad_eighth = #1250 1'b1;
+		# 1250;
+	end
+	clk_buad_eighth = 1'b0;
+end 
+
+// rx
+initial
+begin
+	rx = 1'b1;
+	rx = #30000 1'b0;
+	rx = #40000 1'b1;
+	rx = #20000 1'b0;
+	rx = #40000 1'b1;
+	rx = #100000 1'b0;
+	rx = #20000 1'b1;
+	rx = #20000 1'b0;
+	rx = #20000 1'b1;
+	rx = #20000 1'b0;
+	rx = #60000 1'b1;
+end 
+
+// clk
+always
+begin
+	clk = 1'b0;
+	clk = #1000 1'b1;
+	#1000;
+end 
+
+rxTest_vlg_sample_tst tb_sample (
+	.clk(clk),
+	.clk_buad_eighth(clk_buad_eighth),
+	.global_reset(global_reset),
+	.rx(rx),
+	.sampler_tx(sampler)
+);
+
+rxTest_vlg_check_tst tb_out(
+	.framing_error(framing_error),
+	.parity_error(parity_error),
+	.rdr(rdr),
+	.rdr_ready(rdr_ready),
+	.state_counter_total_OUT(state_counter_total_OUT),
+	.state_is_idle_OUT(state_is_idle_OUT),
+	.state_is_read_OUT(state_is_read_OUT),
+	.state_is_start_OUT(state_is_start_OUT),
+	.sampler_rx(sampler)
+);
+endmodule
+

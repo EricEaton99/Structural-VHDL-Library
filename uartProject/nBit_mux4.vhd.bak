@@ -1,0 +1,38 @@
+-- nBit_mux4
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+entity nBit_mux4 is
+generic ( n : positive := 4 );
+port(
+	in0, in1, in2, in3 : in std_logic_vector(n-1 downto 0);
+	sel0, sel1 : in std_logic;
+	out0 : out std_logic_vector(n-1 downto 0));
+end nBit_mux4;
+
+architecture rtl of nBit_mux4 is
+
+-- conmponents
+component nBit_mux2 is
+	generic ( n : positive := 4 );
+	port(
+		in0, in1 : in std_logic_vector(n-1 downto 0);
+		sel0 : in std_logic;
+		out0 : out std_logic_vector(n-1 downto 0));
+end component;
+
+-- wires
+signal sel0_mask, sel1_mask, mux0, mux1 : std_logic_vector(n-1 downto 0);
+
+begin
+--	mux2_0x : nBitMux2 generic map(n) port map(sel0, in0, in1, mux0);
+--	mux2_1x : nBitMux2 generic map(n) port map(sel0, in2, in3, mux1);
+--	mux2_x : nBitMux2 generic map(n) port map(sel1, mux0, mux1, out0);
+
+	sel0_mask <= (others => sel0);
+	sel1_mask <= (others => sel1);
+	
+	out0 <= (not sel0_mask and not sel1_mask and in0) or (not sel0_mask and sel1_mask and in1) or (sel0_mask and not sel1_mask and in2) or (sel0_mask and sel1_mask and in3);
+end rtl;

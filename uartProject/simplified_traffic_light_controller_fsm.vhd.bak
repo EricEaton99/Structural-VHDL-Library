@@ -1,0 +1,22 @@
+-- simplified_traffic_light_controller_fsm
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+entity simplified_traffic_light_controller_fsm is
+port(
+	clk, global_reset : in std_logic;
+	-- : out std_logic);
+end simplified_traffic_light_controller_fsm;
+
+architecture rtl of simplified_traffic_light_controller_fsm is
+
+-- conmponents
+--none
+
+-- wires
+--none
+
+begin
+end rtl;

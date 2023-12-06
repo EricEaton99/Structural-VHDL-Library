@@ -1,0 +1,22 @@
+-- Message compiler
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+entity traffic_light_controller_tx_message_compiler is
+port(
+	 : in std_logic;
+	 : out std_logic);
+end stoplight_tx_compiler;
+
+architecture rtl of stoplight_tx_compiler is
+
+-- conmponents
+--none
+
+-- wires
+--none
+
+begin
+	
+end rtl;

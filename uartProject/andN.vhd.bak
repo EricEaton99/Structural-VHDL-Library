@@ -1,0 +1,26 @@
+-- andN
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+entity andN is
+generic (
+    n : positive := 4  -- Specify the number of bits
+);
+port(
+	inN : in std_logic_vector(n-1 downto 0);
+	anded : out std_logic);
+end andN;
+
+architecture rtl of andN is
+
+-- conmponents
+--none
+
+-- wires
+--none
+
+begin
+	anded <= '1' when andN = (others => '1') else '0';
+end rtl;

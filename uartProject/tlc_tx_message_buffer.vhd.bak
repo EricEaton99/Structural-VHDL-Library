@@ -1,0 +1,23 @@
+-- tlc_tx_message_buffer
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+entity tlc_tx_message_buffer is
+port(
+	 : in std_logic;
+	 : out std_logic);
+end tlc_tx_message_buffer;
+
+architecture rtl of tlc_tx_message_buffer is
+
+-- conmponents
+--none
+
+-- wires
+--none
+
+begin
+
+end rtl;

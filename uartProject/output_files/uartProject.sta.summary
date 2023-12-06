@@ -1,0 +1,185 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.573
+TNS   : -78.634
+
+Type  : Slow 1200mV 85C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -1.533
+TNS   : -12.851
+
+Type  : Slow 1200mV 85C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.412
+TNS   : -9.297
+
+Type  : Slow 1200mV 85C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.151
+TNS   : -6.301
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -1.053
+TNS   : -5.514
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : -0.926
+TNS   : -4.984
+
+Type  : Slow 1200mV 85C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -0.885
+TNS   : -4.153
+
+Type  : Slow 1200mV 85C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -0.314
+TNS   : -1.509
+
+Type  : Slow 1200mV 85C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : 0.356
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -9.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -59.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -11.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -8.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -8.000
+
+Type  : Slow 1200mV 0C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.331
+TNS   : -64.922
+
+Type  : Slow 1200mV 0C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -1.276
+TNS   : -10.546
+
+Type  : Slow 1200mV 0C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.171
+TNS   : -7.495
+
+Type  : Slow 1200mV 0C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -0.922
+TNS   : -4.884
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -0.838
+TNS   : -4.316
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : -0.878
+TNS   : -4.756
+
+Type  : Slow 1200mV 0C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -0.829
+TNS   : -3.915
+
+Type  : Slow 1200mV 0C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -0.300
+TNS   : -1.482
+
+Type  : Slow 1200mV 0C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : 0.310
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : 0.310
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -9.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -59.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -11.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -8.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -8.000
+
+Type  : Fast 1200mV 0C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -0.505
+TNS   : -18.489
+
+Type  : Fast 1200mV 0C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -0.357
+TNS   : -2.346
+
+Type  : Fast 1200mV 0C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -0.349
+TNS   : -1.779
+
+Type  : Fast 1200mV 0C Model Setup 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -0.189
+TNS   : -0.464
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -0.123
+TNS   : -0.334
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : -0.515
+TNS   : -2.780
+
+Type  : Fast 1200mV 0C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -0.495
+TNS   : -2.494
+
+Type  : Fast 1200mV 0C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -0.063
+TNS   : -0.285
+
+Type  : Fast 1200mV 0C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : 0.185
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : 0.186
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -9.510
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_8|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -59.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_256|nBit_reg:counter_reg|d_flipflop:\loop0:7:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -11.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_150|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -8.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'tlc_clock_generator:inst11|nBit_counter_sync_clear:clk_div_41|nBit_reg:counter_reg|d_flipflop:\loop0:0:dff|jk_flipflop:jk|t_q'
+Slack : -1.000
+TNS   : -8.000
+
+------------------------------------------------------------

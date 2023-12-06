@@ -1,0 +1,72 @@
+-- nChar_acsii7_SIPO_shift_reg
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+
+entity nChar_acsii7_SIPO_shift_reg is
+generic ( n : positive := 6 );
+port(
+	parallel_in : in std_logic_vector(n*7-1 downto 0);		--preset, clear could be masks with preset = !clear
+	global_reset, clk, en, shift_load_high : in std_logic;
+	parallel_out_EXPOSED : out std_logic_vector(n*7-1 downto 0);
+	char_out: out std_logic_vector(6 downto 0));
+end nChar_acsii7_SIPO_shift_reg;
+
+architecture rtl of nChar_acsii7_SIPO_shift_reg is
+
+-- conmponents
+component nBit_reg is
+generic ( n : positive := 4 );
+port(
+	parallel_in, preset, clear : in std_logic_vector(n-1 downto 0);		--preset, clear could be masks with preset = !clear
+	clk, en : in std_logic;
+	q, q_not: out std_logic_vector(n-1 downto 0));
+end component;
+
+
+component nBit_mux2 is
+	generic ( n : positive := 4 );
+	port(
+		in1, in0 : in std_logic_vector(n-1 downto 0);
+		sel0 : in std_logic;
+		out0 : out std_logic_vector(n-1 downto 0));
+end component;
+
+-- wires
+signal parallel_out, parallel_in_temp : std_logic_vector(n*7-1 downto 0);
+	
+
+begin	
+	-- msChar becomes null on shift
+	shift_load_high_mux_msb : nBit_mux2
+		generic map(7)
+		port map(parallel_in((n*7)-1 downto (n-1)*7), 	--
+					(others=>'0'), 
+					shift_load_high, 
+					parallel_in_temp((n*7)-1 downto (n-1)*7));
+
+	-- take parallel_in on load but parallel_out >> 7 on shift
+	shift_load_high_mux : nBit_mux2
+		generic map((n-1)*7)
+		port map(parallel_in((n-1)*7-1 downto 0), 
+					parallel_out(n*7-1 downto 7), 
+					shift_load_high, 
+					parallel_in_temp((n-1)*7-1 downto 0));
+					
+	
+	ascii_reg0: nBit_reg
+		generic map(7)
+		port map (parallel_in_temp(6 downto 0), (others => '0'), (others => global_reset), clk, en, parallel_out(6 downto 0), open);
+		-- parallel_in, preset, clear, clk, en, q, q_not
+
+	loop0: for i in 1 to n-1 generate
+		ascii_reg: nBit_reg
+			generic map(7)
+			port map (parallel_in_temp(7*(i+1)-1 downto 7*i), (others => '0'), (others => global_reset), clk, en, parallel_out(7*(i+1)-1 downto 7*i), open);
+			-- parallel_in, preset, clear, clk, en, q, q_not
+	end generate;
+	
+	char_out <= parallel_out(6 downto 0);
+	parallel_out_EXPOSED <= parallel_out;
+end rtl;
